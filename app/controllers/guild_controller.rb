@@ -1,0 +1,2 @@
+class GuildController < ApplicationController
+end

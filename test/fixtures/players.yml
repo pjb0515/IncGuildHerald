@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  level: 1
+  realmLevel: 1
+  last_api_update: 2017-02-17 16:22:35
+  race: 1
+  class: 1
+  realm: 1
+  total_rps: 1
+  guild: 
+
+two:
+  name: MyString
+  level: 1
+  realmLevel: 1
+  last_api_update: 2017-02-17 16:22:35
+  race: 1
+  class: 1
+  realm: 1
+  total_rps: 1
+  guild: 
