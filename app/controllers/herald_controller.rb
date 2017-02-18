@@ -20,7 +20,7 @@ class HeraldController < ApplicationController
     
     dump_hash.each do |key, value|
       name = value["Name"]
-      guild = value["Guild"]
+      guild_name = value["Guild"]
       race = value["Race"].downcase
       daoc_class = value["Class"].downcase
       realm = value["Realm"].downcase
