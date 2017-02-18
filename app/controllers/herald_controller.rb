@@ -24,9 +24,9 @@ class HeraldController < ApplicationController
       race = value["Race"].downcase
       daoc_class = value["Class"].downcase
       realm = value["Realm"].downcase
-      last_update = value["LastUpdate"]
+      last_update = value["LastUpdated"]
       level = value["Level"]
-      realm_level = value["RealmLevel"]
+      realm_level = value["RealmRank"]
       total_rps = value["Rp"]
       
       Player.create_player(name, guild_name, race, daoc_class, realm, level, realm_level, total_rps, last_update)

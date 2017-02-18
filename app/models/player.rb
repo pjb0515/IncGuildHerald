@@ -18,7 +18,7 @@ class Player < ActiveRecord::Base
         player_guild.save
       end
       
-      new_player = Player.new(:name => name, :guild => player_guild, :race => race, :daoc_class => daoc_class, :realm => realm, :realm_level => realm_level, :total_rps => total_rps, :last_api_update => last_update)
+      new_player = Player.new(:name => name, :guild => player_guild, :race => race, :daoc_class => daoc_class, :realm => realm, :level => level, :realm_level => realm_level, :total_rps => total_rps, :last_api_update => last_update)
       new_player.save
     end
     
