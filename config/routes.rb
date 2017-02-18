@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  
   get '/herald' => 'herald#index', as: :index_herald
   get '/herald/player' => 'player#index', as: :index_player
   get '/herald/player/find/:name' => 'player#player_details', as: :player_details
