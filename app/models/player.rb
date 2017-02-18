@@ -7,7 +7,7 @@ class Player < ActiveRecord::Base
 	enum daoc_class: [ :animist, :bard, :blademaster, :champion, :druid, :eldritch, :enchanter, :hero, :mentalist, :nightshade, :ranger, :valewalker, :warden, :naturalist, :stalker, :guardian, :magician, :forester, :berserker, :bonedancer, :healer, :hunter, :runemaster, :savage, :shadowblade, :shaman, :skald, :spiritmaster, :thane, :warrior, :viking, :seer, :mystic, :midgardrogue, :armsman, :cabalist, :cleric, :friar, :infiltrator, :mercenary, :minstrel, :necromancer, :paladin, :reaver, :scout, :sorcerer, :theurgist, :wizard, :fighter, :acolyte, :albionrogue, :mage, :elementalist, :disciple ]
 	enum realm: [ :hibernia, :midgard, :albion, "7" ]
   
-  self.create_player(name, guild_name, race, daoc_class, realm, level, realm_level, total_rps, last_update)
+  def self.create_player(name, guild_name, race, daoc_class, realm, level, realm_level, total_rps, last_update)
     new_player = nil
     if !Player.exists?(:name => name)
       player_guild = nil
