@@ -6,8 +6,8 @@ class HeraldController < ApplicationController
   end
   
   def get_dump
-    url = URI.parse('http://uthgard.org/herald/api/dump')
-    
+    url = URI.parse('https://uthgard.org/herald/api/dump')
+  
     http = Net::HTTP.new(url.host, 443)
     http.use_ssl = true
 
@@ -19,9 +19,18 @@ class HeraldController < ApplicationController
     
     
     dump_hash.each do |key, value|
-      puts value["Name"]
-      puts value["Guild"]
-      puts "---------------------"
+      name = value["Name"]
+      guild = value["Guild"]
+      race = value["Race"].downcase
+      daoc_class = value["Class"].downcase
+      realm = value["Realm"].downcase
+      last_update = value["LastUpdate"]
+      
+      new_player = Player.new(:name => name, :race => race, :daoc_class => daoc_class, :realm => realm)
+      puts new_player.name
+      puts new_player.race
+      puts new_player.realm
+      puts new_player.daoc_class
     end
   end
   
@@ -29,16 +38,30 @@ class HeraldController < ApplicationController
   def post_dump
     if params[:password].eql? ENV["DUMP_PASSWORD"]
       url = URI.parse('https://uthgard.org/herald/api/dump')
-      req = Net::HTTP::Get.new(url.to_s)
-      res = Net::HTTP.start(url.host, url.port) {|http|
-        http.request(req)
-      }
+    
+      http = Net::HTTP.new(url.host, 443)
+      http.use_ssl = true
+
+      headers = {}
+
+      res = http.post(url, "", headers)
+      
       dump_hash = JSON.parse res.body
       
+      
       dump_hash.each do |key, value|
-        puts value[:Name]
-        puts value[:Guild]
-        puts "---------------------"
+        name = value["Name"]
+        guild = value["Guild"]
+        race = value["Race"]
+        daoc_class = value["Class"]
+        realm = value["Realm"]
+        last_update = value["LastUpdate"]
+        
+        new_player = Player.new(:name => name, :guild => guild, :race => race, :daoc_class => daoc_class, :realm => realm)
+        puts new_player.name
+        puts new_player.race
+        puts new_player.realm
+        puts new_player.daoc_class
       end
     end
   

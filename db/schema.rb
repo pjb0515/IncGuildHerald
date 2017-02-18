@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20170217213234) do
     t.integer  "realm_level"
     t.datetime "last_api_update"
     t.integer  "race"
-    t.integer  "class"
+    t.integer  "daoc_class"
     t.integer  "realm"
     t.integer  "total_rps"
     t.integer  "guild_id"
