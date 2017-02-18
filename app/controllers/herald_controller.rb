@@ -25,12 +25,11 @@ class HeraldController < ApplicationController
       daoc_class = value["Class"].downcase
       realm = value["Realm"].downcase
       last_update = value["LastUpdate"]
+      level = value["Level"]
+      realm_level = value["RealmLevel"]
+      total_rps = value["Rp"]
       
-      new_player = Player.new(:name => name, :race => race, :daoc_class => daoc_class, :realm => realm)
-      puts new_player.name
-      puts new_player.race
-      puts new_player.realm
-      puts new_player.daoc_class
+      Player.create_player(name, guild_name, race, daoc_class, realm, level, realm_level, total_rps, last_update)
     end
   end
   
