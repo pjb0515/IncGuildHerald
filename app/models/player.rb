@@ -54,6 +54,7 @@ class Player < ActiveRecord::Base
     
     calculating_date = today - amount_of_days
     rp_snapshot_list = rp_snapshots.order("snapshot_date DESC")
+    rp_snapshot = nil
     
     #find the first snapshot that was saved the amount of days ago or less.
     rp_snapshot_list.each do |snapshot|
