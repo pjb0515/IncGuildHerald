@@ -58,6 +58,8 @@ class Player < ActiveRecord::Base
     
     #find the first snapshot that was saved the amount of days ago or less.
     rp_snapshot_list.each do |snapshot|
+      puts snapshot.snapshot_date +"<="+ calculating_date
+      puts "----------------------"
       if snapshot.snapshot_date <= calculating_date
         rp_snapshot = snapshot
         break
