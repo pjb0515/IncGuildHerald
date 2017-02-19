@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h1>Guild Details - <%= @guild.name %></h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h3>Guild members</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <% @guild.players.each do |guild_member| %>
+      <p>Name: <%= link_to guild_member.name, player_details_path(guild_member) %></p>
+    <% end %>
+  </div>
+</div>
+  

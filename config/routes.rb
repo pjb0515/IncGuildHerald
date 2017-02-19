@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get '/herald/player/find' => 'player#player_details', as: :player_details
   get '/herald/player/top_rps/:ranking_type' => 'player#top_players', as: :top_players
   get '/herald/guild' => 'guild#index', as: :index_guild
-  get '/herald/guild/find/:name' => 'guild#guild_details', as: :guild_details
+  get '/herald/guild/find' => 'guild#guild_details', as: :guild_details
   
   get '/herald/dump' => 'herald#get_dump', as: :herald_get_dump
   post '/herald/dump' => 'herald#post_dump', as: :herald_post_dump
