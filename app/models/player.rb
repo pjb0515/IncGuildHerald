@@ -56,13 +56,9 @@ class Player < ActiveRecord::Base
     rp_snapshot_list = rp_snapshots.order("snapshot_date ASC")
     rp_snapshot = nil
     
-    #find the first snapshot that was saved the amount of days ago or less.
+    #find the first snapshot that was saved the amount of days ago or more recently.
     rp_snapshot_list.each do |snapshot|
-      puts snapshot.snapshot_date
-      puts "<="
-      puts calculating_date
-      puts "----------------------"
-      if snapshot.snapshot_date <= calculating_date
+      if snapshot.snapshot_date >= calculating_date
         rp_snapshot = snapshot
         break
       end
