@@ -51,12 +51,14 @@ class Player < ActiveRecord::Base
   
   def calculate_rps_gained(amount_of_days)
     today = Date.current
-    rp_snapshot = nil
     
-    for i in amount_of_days..0
-      rp_snapshot = rp_snapshots.where(:snapshot_date => (today-i))
-      
-      if !rp_snapshot.blank?
+    calculating_date = today - amount_of_days
+    rp_snapshot_list = rp_snapshots.order("snapshot_date DESC")
+    
+    #find the first snapshot that was saved the amount of days ago or less.
+    rp_snapshot_list.each do |snapshot|
+      if snapshot.snapshot_date <= calculating_date
+        rp_snapshot = snapshot
         break
       end
     end
