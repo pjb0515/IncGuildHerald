@@ -11,7 +11,7 @@
 <div class="row">
   <div class="col-xs-12">
     <% @guild.players.each do |guild_member| %>
-      <p>Name: <%= link_to guild_member.name, player_details_path(guild_member) %></p>
+      <p>Name: <%= link_to guild_member.name, player_details_path(:name => guild_member.name) %></p>
     <% end %>
   </div>
 </div>
