@@ -26,7 +26,7 @@ class Player < ActiveRecord::Base
       current_player.calculate_full_rps_gained()
     end
     
-    RpSnapshot.create_with_validation(player)
+    RpSnapshot.create_with_validation(current_player)
     return current_player
   end
   
