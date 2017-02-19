@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h1>Search character by name</h1>
+  </div>
+  <div class="col-xs-12">
+    <%= form_tag( player_details_path, method: :get) do %>
+
+      <%= label_tag "Character Name" %>
+      <%= text_field_tag :name %>
+
+      <%= submit_tag "Search", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>

@@ -24,4 +24,12 @@ class Player < ActiveRecord::Base
     
     return new_player
   end
+  
+  def get_guild_name
+    if guild.nil?
+      " "
+    else
+      return guild.name
+    end
+  end
 end
