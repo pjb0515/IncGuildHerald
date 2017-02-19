@@ -29,7 +29,7 @@ class HeraldController < ApplicationController
       realm_level = value["RealmRank"]
       total_rps = value["Rp"]
       
-      Player.create_player(name, guild_name, race, daoc_class, realm, level, realm_level, total_rps, last_update)
+      Player.update_player(name, guild_name, race, daoc_class, realm, level, realm_level, total_rps, last_update)
     end
   end
   
