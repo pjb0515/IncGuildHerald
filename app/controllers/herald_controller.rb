@@ -29,11 +29,11 @@ class HeraldController < ApplicationController
       realm_level = value["RealmRank"]
       total_rps = value["Rp"]
       
-      spawn << Spawnling.new do
+      spawn = Spawnling.new do
         Player.update_player(name, guild_name, race, daoc_class, realm, level, realm_level, total_rps, last_update)
       end
       
-      spawn.wait
+      Spawnling.wait(spawn)
     end
   end
   
