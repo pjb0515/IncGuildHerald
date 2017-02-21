@@ -51,6 +51,7 @@ group :production do
   gem 'rails_12factor'
   gem 'pg'
   gem 'unicorn', '4.8.3'
+  gem 'scout_apm'
 end
 group :development, :test do
   gem 'sqlite3'
