@@ -15,7 +15,6 @@ class Player < ActiveRecord::Base
     
     #Player exists in the database, so update any attributes that have changed.
     if current_player = Player.find_by(:name => name)
-      current_player = Player.find_by(:name => name)
       current_player.update(:guild => player_guild, :race => race, :daoc_class => daoc_class, :realm => realm, :level => level, :realm_level => realm_level, :total_rps => total_rps, :last_api_update => last_update)
     
       current_player.calculate_full_rps_gained()
