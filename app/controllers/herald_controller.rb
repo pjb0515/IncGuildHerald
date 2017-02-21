@@ -15,23 +15,8 @@ class HeraldController < ApplicationController
       headers = {}
 
       res = http.post(url, "", headers)
-      parser = Yajl::Parser.new
       
-      dump_hash = parser.parse(res.body)
-      
-      dump_hash.each do |key, value|
-        name = value["Name"]
-        guild_name = value["Guild"]
-        race = value["Race"].downcase
-        daoc_class = value["Class"].downcase
-        realm = value["Realm"].downcase
-        last_update = value["LastUpdated"]
-        level = value["Level"]
-        realm_level = value["RealmRank"]
-        total_rps = value["Rp"]
-        
-        Player.update_player(name, guild_name, race, daoc_class, realm, level, realm_level, total_rps, last_update)
-      end
+      puts res.body
     end
   end
   
