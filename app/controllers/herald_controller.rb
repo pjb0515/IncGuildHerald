@@ -14,8 +14,9 @@ class HeraldController < ApplicationController
     headers = {}
 
     res = http.post(url, "", headers)
+	parser = Yajl::Parser.new
     
-    dump_hash = JSON.parse res.body
+    dump_hash = parser.parse(res.body)
     
     
     dump_hash.each do |key, value|
@@ -28,12 +29,14 @@ class HeraldController < ApplicationController
       level = value["Level"]
       realm_level = value["RealmRank"]
       total_rps = value["Rp"]
+	  
+	  puts name
+	  puts guild_name
+	  puts "---------------"
       
-      spawn = Spawnling.new do
-        Player.update_player(name, guild_name, race, daoc_class, realm, level, realm_level, total_rps, last_update)
-      end
-      
-      Spawnling.wait(spawn)
+      #spawn = Spawnling.new do
+      #  Player.update_player(name, guild_name, race, daoc_class, realm, level, realm_level, total_rps, last_update)
+      #end
     end
   end
   

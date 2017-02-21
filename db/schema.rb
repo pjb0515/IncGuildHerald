@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170219185204) do
+ActiveRecord::Schema.define(version: 20170219190834) do
 
   create_table "guilds", force: :cascade do |t|
     t.string   "name"
@@ -44,8 +44,11 @@ ActiveRecord::Schema.define(version: 20170219185204) do
     t.integer  "realm"
     t.integer  "total_rps"
     t.integer  "guild_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.integer  "last_three_days_rps",    default: 0
+    t.integer  "last_seven_days_rps",    default: 0
+    t.integer  "last_fourteen_days_rps", default: 0
   end
 
   add_index "players", ["guild_id"], name: "index_players_on_guild_id"
@@ -56,7 +59,7 @@ ActiveRecord::Schema.define(version: 20170219185204) do
     t.date     "snapshot_date"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.integer  "total_rp"
+    t.integer  "total_rps"
   end
 
   add_index "rp_snapshots", ["player_id"], name: "index_rp_snapshots_on_player_id"
