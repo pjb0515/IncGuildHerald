@@ -33,7 +33,7 @@ class HeraldController < ApplicationController
         Player.update_player(name, guild_name, race, daoc_class, realm, level, realm_level, total_rps, last_update)
       end
       
-      Spawnling.wait(spawn)
+      spawn.wait
     end
   end
   
