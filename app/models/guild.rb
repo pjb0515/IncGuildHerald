@@ -6,8 +6,8 @@ class Guild < ActiveRecord::Base
   def self.find_or_create(guild_name, realm)
     if guild_name.blank?
       return nil
-    elsif Guild.exists?(:name => guild_name)
-      return Guild.find_by(:name => guild_name)
+    elsif found_guild = Guild.find_by(:name => guild_name)
+      return found_guild
     else
       return create(:name => guild_name, :realm => realm)
     end
