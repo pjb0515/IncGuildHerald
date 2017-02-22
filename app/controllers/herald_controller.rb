@@ -6,7 +6,6 @@ class HeraldController < ApplicationController
   end
   
   def get_dump
-    parser = Yajl::Parser.new
     
     url = URI.parse('https://uthgard.org/herald/api/dump')
     
@@ -27,7 +26,7 @@ class HeraldController < ApplicationController
       
       puts single_player_json
       
-      player_hash = parser.parse(single_player_json)
+      player_hash = JSON.parse single_player_json
       
       name = player_hash["Name"]
       guild_name = player_hash["Guild"]
