@@ -11,28 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170219190834) do
+ActiveRecord::Schema.define(version: 20170222025947) do
+
+  create_table "guild_rp_snapshots", force: :cascade do |t|
+    t.integer  "guild_id"
+    t.date     "snapshot_date"
+    t.integer  "total_rps"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "guild_rp_snapshots", ["guild_id"], name: "index_guild_rp_snapshots_on_guild_id"
 
   create_table "guilds", force: :cascade do |t|
     t.string   "name"
     t.integer  "realm"
     t.integer  "total_rps"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.integer  "last_three_days_rps",    default: 0
+    t.integer  "last_seven_days_rps",    default: 0
+    t.integer  "last_fourteen_days_rps", default: 0
   end
 
   add_index "guilds", ["name"], name: "index_guilds_on_name", unique: true
-
-  create_table "player_rankings", force: :cascade do |t|
-    t.integer  "player_id"
-    t.integer  "rank"
-    t.integer  "rps_gained"
-    t.integer  "rank_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "player_rankings", ["player_id"], name: "index_player_rankings_on_player_id"
 
   create_table "players", force: :cascade do |t|
     t.string   "name"

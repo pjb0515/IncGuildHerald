@@ -1,6 +1,5 @@
 class Player < ActiveRecord::Base
   belongs_to :guild
-  has_many :player_rankings
   has_many :rp_snapshots
 
 	enum race: [ :celt, :elf, :firbolg, :lurikeen, :sylvan, :dwarf, :kobold, :norseman, :troll, :valkyn, :briton, :saracen, :avalonian, :highlander, :inconnu ]

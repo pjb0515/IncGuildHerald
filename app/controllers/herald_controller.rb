@@ -6,45 +6,46 @@ class HeraldController < ApplicationController
   end
   
   def get_dump
-    
-    url = URI.parse('https://uthgard.org/herald/api/dump')
-    
-    http = Net::HTTP.new(url.host, 443)
-    http.use_ssl = true
-
-    headers = {}
-
-    res = http.post(url, "", headers)
-    
-    single_player_splits = res.body.split(/"[a-z]+": {/)
-    
-    split_length = single_player_splits.length
-    
-    for i in 1..split_length
-    
-      single_player_json = single_player_splits[i]
-      single_player_json = single_player_json.gsub(/},/, "}")
-      single_player_json = "{ " + single_player_json
+    Spawnling.new do
+      url = URI.parse('https://uthgard.org/herald/api/dump')
       
-      #If last item, remove double close brace.
-      if i == split_length
-        single_player_json = single_player_json.gsub(/}\s+}/, "}")
+      http = Net::HTTP.new(url.host, 443)
+      http.use_ssl = true
+
+      headers = {}
+
+      res = http.post(url, "", headers)
+      
+      single_player_splits = res.body.split(/"[a-z]+": {/)
+      
+      split_length = single_player_splits.length
+      
+      for i in 1..split_length
+      
+        single_player_json = single_player_splits[i]
+        single_player_json = single_player_json.gsub(/},/, "}")
+        single_player_json = "{ " + single_player_json
+        
+        #If last item, remove double close brace.
+        if i == split_length
+          single_player_json = single_player_json.gsub(/}\s+}/, "}")
+        end
+        
+        player_hash = JSON.parse single_player_json
+        
+        name = player_hash["Name"]
+        guild_name = player_hash["Guild"]
+        race = player_hash["Race"].downcase
+        daoc_class = player_hash["Class"].downcase
+        realm = player_hash["Realm"].downcase
+        last_update = player_hash["LastUpdated"]
+        level = player_hash["Level"]
+        realm_level = player_hash["RealmRank"]
+        total_rps = player_hash["Rp"]
+        
+        Player.update_player(name, guild_name, race, daoc_class, realm, level, realm_level, total_rps, last_update)
+      
       end
-      
-      player_hash = JSON.parse single_player_json
-      
-      name = player_hash["Name"]
-      guild_name = player_hash["Guild"]
-      race = player_hash["Race"].downcase
-      daoc_class = player_hash["Class"].downcase
-      realm = player_hash["Realm"].downcase
-      last_update = player_hash["LastUpdated"]
-      level = player_hash["Level"]
-      realm_level = player_hash["RealmRank"]
-      total_rps = player_hash["Rp"]
-      
-      Player.update_player(name, guild_name, race, daoc_class, realm, level, realm_level, total_rps, last_update)
-    
     end
   end
   
