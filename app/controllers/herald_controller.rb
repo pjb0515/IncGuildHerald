@@ -16,7 +16,14 @@ class HeraldController < ApplicationController
 
       res = http.post(url, "", headers)
       
-      puts res.body
+      single_player_splits = res.body.split(/"[a-z]+": {/)
+      
+      for single_player_splits.each do |single_player_json|
+        single_player_json = single_player_json.tr("},", "}")
+        single_player_json = "{ " + single_player_json
+        
+        puts single_player_json
+      end
     end
   end
   
