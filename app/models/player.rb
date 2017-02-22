@@ -36,6 +36,18 @@ class Player < ActiveRecord::Base
     end
   end
   
+  def self.hibernia_total_rps
+    Player.where(:realm => 0).sum(:total_rps)
+  end
+  
+  def self.midgard_total_rps
+    Player.where(:realm => 1).sum(:total_rps)
+  end
+  
+  def self.albion_total_rps
+    Player.where(:realm => 2).sum(:total_rps)
+  end
+  
   def calculate_full_rps_gained()
     #If there are no rp snapshots, dont try and calculate rps gained over time.
     player_rp_snapshots = rp_snapshots

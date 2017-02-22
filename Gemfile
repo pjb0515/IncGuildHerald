@@ -47,7 +47,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'rails_admin'
 gem 'spawnling', '~>2.1'
-gem 'yajl-ruby', require: 'yajl'
+gem "font-awesome-rails"
 
 group :production do
   gem 'rails_12factor'
