@@ -18,13 +18,18 @@ class HeraldController < ApplicationController
     
     single_player_splits = res.body.split(/"[a-z]+": {/)
     
-    for i in 1..single_player_splits.length
+    split_length = single_player_splits.length
+    
+    for i in 1..split_length
     
       single_player_json = single_player_splits[i]
       single_player_json = single_player_json.gsub(/},/, "}")
       single_player_json = "{ " + single_player_json
       
-      puts single_player_json
+      #If last item, remove double close brace.
+      if i == split_length
+        single_player_json = single_player_json.gsub(/}\s+}/, "}")
+      end
       
       player_hash = JSON.parse single_player_json
       
