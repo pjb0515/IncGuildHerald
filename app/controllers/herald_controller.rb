@@ -23,6 +23,8 @@ class HeraldController < ApplicationController
       single_player_json = single_player_json.gsub(/},/, "}")
       single_player_json = "{ " + single_player_json
       
+      puts single_player_json
+      
       player_hash = parser.parse(single_player_json)
       
       name = player_hash["Name"]
