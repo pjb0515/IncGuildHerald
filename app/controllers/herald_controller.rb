@@ -19,7 +19,9 @@ class HeraldController < ApplicationController
     
     single_player_splits = res.body.split(/"[a-z]+": {/)
     
-    single_player_splits.each do |single_player_json|
+    for i in 1..single_player_splits.length
+    
+      single_player_json = single_player_splits[i]
       single_player_json = single_player_json.gsub(/},/, "}")
       single_player_json = "{ " + single_player_json
       
