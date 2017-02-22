@@ -2,7 +2,7 @@
 
 $(function() {
 
-  if ( $( ".morris-donut-chart" ).length && $( ".morris-donut-chart" ).children().length == 0) {
+  if ( $( "#morris-donut-chart" ).length && $( "#morris-donut-chart" ).children().length == 0) {
     // Donut Chart
     Morris.Donut({
         element: 'morris-donut-chart',
