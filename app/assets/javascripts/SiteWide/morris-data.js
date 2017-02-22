@@ -5,6 +5,7 @@ $(function() {
     // Donut Chart
     Morris.Donut({
         element: 'morris-donut-chart',
+        colors: ["green", "blue", "red"],
         data: [{
             label: "Hibernia",
             value: $(".realm_total_rps").data("hibernia-total-rps")
