@@ -1,0 +1,25 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Realm Points</th>
+      <th>Realm Rank</th>
+      <th>Realm</th>
+      <th>Class</th>
+      <th>Guild</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @players.each do |player| %>
+      <tr>
+        <td><%= player.name %></td>
+        <td><%= player.total_rps %></td>
+        <td><%= player.realm_level %></td>
+        <td><%= player.realm.capitalize %></td>
+        <td><%= player.realm_level %></td>
+        <td><%= player.class.capitalize %></td>
+        <td><%= link_to player.guild.name, guild_details_path(:name => player.guild.name) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
