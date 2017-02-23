@@ -16,3 +16,4 @@
 //= require bootstrap.min.js
 //= require_tree ./SiteWide
 //= require flot-data.js
+//= require inc-guild.js

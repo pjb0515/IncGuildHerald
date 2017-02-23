@@ -5,6 +5,6 @@ class PlayerController < ApplicationController
   end
   
   def top_players
-    @players = Player.order("total_rps DESC").limit(5)
+    @players = Player.order("total_rps DESC").limit(25)
   end
 end
