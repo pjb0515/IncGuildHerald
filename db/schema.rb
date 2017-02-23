@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20170222025947) do
     t.date     "snapshot_date"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.integer  "total_rps"
+    t.integer  "total_rp"
   end
 
   add_index "rp_snapshots", ["player_id"], name: "index_rp_snapshots_on_player_id"
