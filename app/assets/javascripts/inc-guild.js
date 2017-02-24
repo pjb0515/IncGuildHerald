@@ -105,7 +105,7 @@ function getGuildLinkHtml(guildName) {
   }
   else
   {
-    return "<a href='/herald/guild/find?name="+encodeURIComponent(guildName)+"'>"+guildName+"</a>";
+    return "<a href='/herald/guild/find/"+encodeURIComponent(guildName)+"'>"+guildName+"</a>";
   }
 }
 
