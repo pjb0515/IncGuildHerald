@@ -106,6 +106,58 @@ function getTopPlayers(realm, duration, callback)
 	return false;
 }
 
+$(function() {
+  $(".search-top-guilds-form").bind('submit', function(event) {
+    var currentForm = $(this).closest("form");
+    
+    var realm = "";
+    var duration = "";
+    
+    realm = $('input[name=select-realm]:checked').val();
+    duration = $('input[name=select-duration]:checked').val();
+    
+    getTopGuilds(realm, duration, function(responseJSON) {
+      $("#top-guilds-table tbody tr").remove();
+      
+      $.each(responseJSON.guilds, function() {
+        $("#top-guilds-table tbody").append(
+          "<tr>"+
+            "<td>"+getGuildLinkHtml(this.name)+"</td>"+
+            "<td>"+this.rps+"</td>"+
+            "<td class='"+this.realm+"'>"+capitalize(this.realm)+"</td>"+character_count
+            "<td>"+this.character_count+"</td>"+
+          "</tr>"
+        );
+      });
+    });
+    event.preventDefault();
+  });
+});
+
+function getTopGuilds(realm, duration, callback)
+{
+  var params = "realm="+realm+
+                  "&duration="+duration;
+  var xmlhttp = createCORSRequest('GET', "/herald/guild/top_rps?"+params);
+	if(!xmlhttp)
+	{
+		document.body.innerHTML = "Sorry, your browser isn't supported.  <a href=\"http://caniuse.com/#feat=cors\">Click here for a list of supported browsers</a>";
+		return false;
+	}
+
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+      callback(JSON.parse(xmlhttp.responseText));
+    }
+	}
+	xmlhttp.send();
+	
+	return false;
+}
+
+
 $(document).on('turbolinks:load', function() {
 
   if ( $( "#morris-donut-chart" ).length && $( "#morris-donut-chart" ).children().length == 0) {
