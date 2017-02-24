@@ -5,8 +5,12 @@
 </div>
 <div class="row">
   <div class="col-xs-12">
-    <% @guilds.each do |guild| %>
-      <p>Name: <%= link_to guild.name, guild_details_path(guild.name) %></p>
+    <% if !@guilds.blank? %>
+      <% @guilds.each do |guild| %>
+        <p>Name: <%= link_to guild.name, guild_details_path(guild.name) %></p>
+      <% end %>
+    <% else %>
+      No guilds found.
     <% end %>
   </div>
 </div>

@@ -5,8 +5,12 @@
 </div>
 <div class="row">
   <div class="col-xs-12">
-    <% @players.each do |player| %>
-      <p>Name: <%= link_to player.name, player_details_path(player.name) %></p>
+    <% if !@players.blank? %>
+      <% @players.each do |player| %>
+        <p>Name: <%= link_to player.name, player_details_path(player.name) %></p>
+      <% end %>
+    <% else %>
+      No characters found.
     <% end %>
   </div>
 </div>
