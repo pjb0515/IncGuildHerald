@@ -73,7 +73,7 @@ class Guild < ActiveRecord::Base
     if players.blank?
       return nil
     end
-    update(total_rps: players.sum(:total_rps), last_three_days_rps; players.sum(:last_three_days_rps), last_seven_days_rps: players.sum(:last_seven_days_rps), last_fourteen_days_rps: players.sum(:last_fourteen_days_rps))
+    update(total_rps: players.sum(:total_rps), last_three_days_rps: players.sum(:last_three_days_rps), last_seven_days_rps: players.sum(:last_seven_days_rps), last_fourteen_days_rps: players.sum(:last_fourteen_days_rps))
   end
   
   def get_rps_from_duration(duration)
