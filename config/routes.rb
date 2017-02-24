@@ -10,9 +10,5 @@ Rails.application.routes.draw do
   get '/herald/guild/find' => 'guild#guild_details', as: :guild_details
   get '/herald/guild/top_rps' => 'guild#top_guilds', as: :top_guilds
   
-  get '/herald/dump' => 'herald#get_dump', as: :herald_get_dump
-  post '/herald/dump' => 'herald#post_dump', as: :herald_post_dump
-  get '/herald/dump/update_guilds' => 'herald#update_guilds_dump', as: :herald_update_guilds_dump
-  
   root 'herald#index'
 end
