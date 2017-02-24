@@ -2,7 +2,7 @@ class PlayerController < ApplicationController
 
   def search_players
     @search_name = params[:name]
-    @players = Player.having("name like '?%'", @search_name)
+    @players = Player.having("name like ?", "#{@search_name}%")
   end
   
   def player_details
