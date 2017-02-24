@@ -4,7 +4,7 @@ class GuildController < ApplicationController
     @guild = Guild.find_by(:name => params[:name])
   end
   
-  def top_players
+  def top_guilds
     @realm = params[:realm]
     @duration = params[:duration]
     
