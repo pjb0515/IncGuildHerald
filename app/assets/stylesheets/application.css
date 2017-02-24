@@ -12,6 +12,7 @@
  *
  *= require inc-guild.css
  *= require bootstrap.min.css
+ *= require jquery.dataTables.min.css
  *= require sb-admin.css
  *= require morris.css
  *= require font-awesome
