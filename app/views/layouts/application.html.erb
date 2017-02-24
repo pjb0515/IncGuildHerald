@@ -31,7 +31,7 @@
                     <ul class="dropdown-menu">
                         <li>
                             
-                          <%= form_tag( player_details_path, method: :get) do %>
+                          <%= form_tag( search_players_path, method: :get) do %>
 
                             <%= label_tag "Character Name" %>
                             <%= text_field_tag :name %>
@@ -45,7 +45,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Search Guild <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                          <%= form_tag( guild_details_path, method: :get) do %>
+                          <%= form_tag( search_guilds_path, method: :get) do %>
 
                             <%= label_tag "Guild Name" %>
                             <%= text_field_tag :name %>

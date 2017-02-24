@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h1>Guild seach results for - <%= @search_name %></h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <% @guilds.each do |guild| %>
+      <p>Name: <%= link_to guild.name, guild_details_path(guild.name) %></p>
+    <% end %>
+  </div>
+</div>

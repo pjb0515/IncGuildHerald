@@ -1,5 +1,10 @@
 class GuildController < ApplicationController
 
+  def search_players
+    @search_name = params[:name]
+    @guilds = Guild.having("name like '%?%'", @search_name)
+  end
+  
   def guild_details
     @guild = Guild.find_by(:name => params[:name])
   end
