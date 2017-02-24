@@ -124,7 +124,7 @@ $(function() {
           "<tr>"+
             "<td>"+getGuildLinkHtml(this.name)+"</td>"+
             "<td>"+this.rps+"</td>"+
-            "<td class='"+this.realm+"'>"+capitalize(this.realm)+"</td>"+character_count
+            "<td class='"+this.realm+"'>"+capitalize(this.realm)+"</td>"+
             "<td>"+this.character_count+"</td>"+
           "</tr>"
         );
