@@ -42,7 +42,7 @@ function createCORSRequestWithDataType(method, url, dataType)
 }
 
 
-$(function() {
+$( document ).on('turbolinks:load', function() {
   $(".search-top-players-form").bind('submit', function(event) {
     var currentForm = $(this).closest("form");
     
@@ -64,6 +64,32 @@ $(function() {
             "<td class='"+this.realm+"'>"+capitalize(this.realm)+"</td>"+
             "<td>"+capitalize(this.daoc_class)+"</td>"+
             "<td>"+getGuildLinkHtml(this.guild)+"</td>"+
+          "</tr>"
+        );
+      });
+    });
+    event.preventDefault();
+  });
+  
+  $(".search-top-guilds-form").bind('submit', function(event) {
+    var currentForm = $(this).closest("form");
+    
+    var realm = "";
+    var duration = "";
+    
+    realm = $('input[name=select-realm]:checked').val();
+    duration = $('input[name=select-duration]:checked').val();
+    
+    getTopGuilds(realm, duration, function(responseJSON) {
+      $("#top-guilds-table tbody tr").remove();
+      
+      $.each(responseJSON.guilds, function() {
+        $("#top-guilds-table tbody").append(
+          "<tr>"+
+            "<td>"+getGuildLinkHtml(this.name)+"</td>"+
+            "<td>"+this.rps+"</td>"+
+            "<td class='"+this.realm+"'>"+capitalize(this.realm)+"</td>"+
+            "<td>"+this.character_count+"</td>"+
           "</tr>"
         );
       });
@@ -105,34 +131,6 @@ function getTopPlayers(realm, duration, callback)
 	
 	return false;
 }
-
-$(function() {
-  $(".search-top-guilds-form").bind('submit', function(event) {
-    var currentForm = $(this).closest("form");
-    
-    var realm = "";
-    var duration = "";
-    
-    realm = $('input[name=select-realm]:checked').val();
-    duration = $('input[name=select-duration]:checked').val();
-    
-    getTopGuilds(realm, duration, function(responseJSON) {
-      $("#top-guilds-table tbody tr").remove();
-      
-      $.each(responseJSON.guilds, function() {
-        $("#top-guilds-table tbody").append(
-          "<tr>"+
-            "<td>"+getGuildLinkHtml(this.name)+"</td>"+
-            "<td>"+this.rps+"</td>"+
-            "<td class='"+this.realm+"'>"+capitalize(this.realm)+"</td>"+
-            "<td>"+this.character_count+"</td>"+
-          "</tr>"
-        );
-      });
-    });
-    event.preventDefault();
-  });
-});
 
 function getTopGuilds(realm, duration, callback)
 {
