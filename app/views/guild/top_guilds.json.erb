@@ -1,0 +1,14 @@
+{
+  "guilds": [
+    <% if !@guilds.blank? %>
+      <% @guilds.each do |guild| %>
+        {
+          "name": "<%= guild.name %>",
+          "realm": "<%= guild.realm %>",
+          "rps": "<%= guild.get_rps_from_duration(@duration) %>",
+          "character_count": "<%= guild.players.count %>"
+        }<% if guild != @guilds.last %>,<% end %>
+      <% end %>
+    <% end %>
+  ]
+}

@@ -1,0 +1,84 @@
+
+<div class="row">
+  <div class="col-xs-12">
+    <%= form_tag( top_guilds_path, method: :get, :class => 'search-top-guilds-form') do %>
+      <div class="row top-guilds-filter-holder">
+        <div class="col-xs-6 top-guilds-realm-filter">
+          <div>
+            <h4>Realm</h4>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-realm', 'all-realms', true %>
+            <%= label_tag 'select-realm_all-realms', "All Realms" %>
+          </div>
+          <div class="hibernia">
+            <%= radio_button_tag 'select-realm', 'hibernia' %>
+            <%= label_tag 'select-realm_hibernia', "Hibernia" %>
+          </div>
+          <div class="midgard">
+            <%= radio_button_tag 'select-realm', 'midgard' %>
+            <%= label_tag 'select-realm_midgard', "Midgard" %>
+          </div>
+          <div class="albion">
+            <%= radio_button_tag 'select-realm', 'albion' %>
+            <%= label_tag 'select-realm_albion', "Albion" %>
+          </div>
+        </div>
+        <div class="col-xs-6 top-guilds-duration-filter">
+          <div>
+            <h4>Duration</h4>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-duration', 'all-time', true %>
+            <%= label_tag 'select-duration_all-time', "All Time" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-duration', 'three-days' %>
+            <%= label_tag 'select-duration_three-days', "Last 3 Days" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-duration', 'seven-days' %>
+            <%= label_tag 'select-duration_seven-days', "Last Week" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-duration', 'fourteen-days' %>
+            <%= label_tag 'select-duration_fourteen-days', "Last Two Weeks" %>
+          </div>
+        </div>
+      </div>
+      <br/>
+      <div class="row">
+        <div class="col-xs-12">
+          <%= submit_tag "Submit", class: "btn btn-large btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+      <br/>
+<div class="row">
+  <div class="col-xs-12">
+    <table class="table" id="top-guilds-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Realm Points</th>
+          <th>Realm</th>
+          <th># of Characters</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if !@guilds.blank? %>
+          <% @guilds.each do |guild| %>
+            <tr>
+              <td><%= link_to guild.name, guild_details_path(:name => guild.name) %></td>
+              <td><%= guild.total_rps %></td>
+              <td class="<%= guild.realm %>"><%= guild.realm.capitalize %></td>
+              <td><%= guild.players.count %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

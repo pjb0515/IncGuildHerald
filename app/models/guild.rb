@@ -4,6 +4,12 @@ class Guild < ActiveRecord::Base
   
   enum realm: [ :hibernia, :midgard, :albion, "7" ]
   
+  def self.update_guilds
+    Guild.all.each do |guild|
+      guild.temp_calculate_full_rps_gained
+    end
+  end
+  
   def self.find_or_create(guild_name, realm)
     if guild_name.blank?
       return nil
@@ -12,6 +18,27 @@ class Guild < ActiveRecord::Base
     else
       return create(:name => guild_name, :realm => realm)
     end
+  end
+  
+  def self.get_top_guilds(realm, duration)
+    where_statement = nil
+    if realm.blank? or realm.eql? "all-realms"
+      where_statement = Guild.all
+    else
+      where_statement = where(realm: realms[realm])
+    end
+    
+    if duration.eql? "all-time"
+      where_statement = where_statement.order("total_rps DESC")
+    elsif duration.eql? "three-days"
+      where_statement = where_statement.order("last_three_days_rps DESC")
+    elsif duration.eql? "seven-days"
+      where_statement = where_statement.order("last_seven_days_rps DESC")
+    elsif duration.eql? "fourteen-days"
+      where_statement = where_statement.order("last_fourteen_days_rps DESC")
+    end
+    
+    return where_statement.limit(25)
   end
   
   def calculate_full_rps_gained()
@@ -40,5 +67,24 @@ class Guild < ActiveRecord::Base
     end
     
     return total_rps - rp_snapshot.total_rps
+  end
+  
+  def temp_calculate_full_rps_gained
+    if players.blank?
+      return nil
+    end
+    update(total_rps: players.sum(:total_rps), last_three_days_rps; players.sum(:last_three_days_rps), last_seven_days_rps: players.sum(:last_seven_days_rps), last_fourteen_days_rps: players.sum(:last_fourteen_days_rps))
+  end
+  
+  def get_rps_from_duration(duration)
+    if duration.eql? "all-time"
+      return total_rps
+    elsif duration.eql? "three-days"
+      return last_three_days_rps
+    elsif duration.eql? "seven-days"
+      return last_seven_days_rps
+    elsif duration.eql? "fourteen-days"
+      return last_fourteen_days_rps
+    end
   end
 end

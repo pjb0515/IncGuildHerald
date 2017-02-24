@@ -5,6 +5,12 @@ class HeraldController < ApplicationController
   def index
   end
   
+  def update_guilds_dump
+    Spawnling.new do
+      Guild.update_guilds
+    end
+  end
+  
   def get_dump
     Spawnling.new do
       url = URI.parse('https://uthgard.org/herald/api/dump')
@@ -44,7 +50,8 @@ class HeraldController < ApplicationController
         total_rps = player_hash["Rp"]
         
         Player.update_player(name, guild_name, race, daoc_class, realm, level, realm_level, total_rps, last_update)
-      
+        
+        Guild.update_guilds
       end
     end
   end
