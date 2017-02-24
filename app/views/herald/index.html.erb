@@ -1,6 +1,6 @@
 
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-sm-6">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i> Realm Point Distribution</h3>
@@ -10,9 +10,26 @@
         </div>
     </div>
     
-    <%= tag :div, class: "realm_total_rps", data: {hibernia_total_rps: Player.hibernia_total_rps, midgard_total_rps: Player.midgard_total_rps, albion_total_rps: Player.albion_total_rps} %>
+    <%= tag :div, class: "realm_total_rps", data: {hibernia_total_rps: Player.hibernia_rps(:total_rps), midgard_total_rps: Player.midgard_rps(:total_rps), albion_total_rps: Player.albion_rps(:total_rps)} %>
+    </div>
   </div>
   
+  <div class="col-sm-6">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i> Last 7 Days RP Distribution</h3>
+        </div>
+        <div class="panel-body">
+          <div id="l7d-distribution-chart"></div>
+        </div>
+    </div>
+    
+    <%= tag :div, class: "realm_l7d_rps", data: {hibernia_total_rps: Player.hibernia_rps(:last_seven_days_rps), midgard_total_rps: Player.midgard_rps(:last_seven_days_rps), albion_total_rps: Player.albion_rps(:last_seven_days_rps)} %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
   <div class="col-md-6">
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -24,6 +41,19 @@
     </div>
     
     <%= tag :div, class: "realm-level-50s", data: {hibernia_total_50s: Player.where(realm: Player.realms['hibernia'], level: 50).count, midgard_total_50s: Player.where(realm: Player.realms['midgard'], level: 50).count, albion_total_50s: Player.where(realm: Player.realms['albion'], level: 50).count} %>
+  </div>
+  
+  <div class="col-md-6">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i> Realm Point Distribution</h3>
+        </div>
+        <div class="panel-body">
+          <div id="player-distribution-chart"></div>
+        </div>
+    </div>
+    
+    <%= tag :div, class: "realm-player-count", data: {hibernia_count: Player.where(realm: Player.realms['hibernia']), midgard_count: Player.where(realm: Player.realms['midgard']), albion_count: Player.where(realm: Player.realms['albion'])} %>
   </div>
 </div>
 <!-- /.row -->

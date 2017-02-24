@@ -176,6 +176,25 @@ $(document).on('turbolinks:load', function() {
         resize: true
     });
   }
+
+  if ( $( "#l7d-distribution-chart" ).length && $( "#l7d-distribution-chart" ).children().length == 0) {
+    // Donut Chart
+    Morris.Donut({
+        element: 'l7d-distribution-chart',
+        colors: ["green", "blue", "red"],
+        data: [{
+            label: "Hibernia",
+            value: $(".realm_l7d_rps").data("hibernia-total-rps")
+        }, {
+            label: "Midgard",
+            value: $(".realm_l7d_rps").data("midgard-total-rps")
+        }, {
+            label: "Albion",
+            value: $(".realm_l7d_rps").data("albion-total-rps")
+        }],
+        resize: true
+    });
+  }
   
   if ( $( "#level-50-distribution-chart" ).length && $( "#level-50-distribution-chart" ).children().length == 0) {
     // Donut Chart
@@ -191,6 +210,25 @@ $(document).on('turbolinks:load', function() {
         }, {
             label: "Albion",
             value: $(".realm-level-50s").data("albion-total-50s")
+        }],
+        resize: true
+    });
+  }
+  
+  if ( $( "#player-distribution-chart" ).length && $( "#player-distribution-chart" ).children().length == 0) {
+    // Donut Chart
+    Morris.Donut({
+        element: 'player-distribution-chart',
+        colors: ["green", "blue", "red"],
+        data: [{
+            label: "Hibernia",
+            value: $(".realm-player-count").data("hibernia-count")
+        }, {
+            label: "Midgard",
+            value: $(".realm-player-count").data("midgard-count")
+        }, {
+            label: "Albion",
+            value: $(".realm-player-count").data("albion-count")
         }],
         resize: true
     });

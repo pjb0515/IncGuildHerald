@@ -49,16 +49,16 @@ class Player < ActiveRecord::Base
     return where_statement.limit(25)
   end
   
-  def self.hibernia_total_rps
-    Player.where(:realm => 0).sum(:total_rps)
+  def self.hibernia_rps(duration)
+    Player.where(:realm => 0).sum(duration)
   end
   
-  def self.midgard_total_rps
-    Player.where(:realm => 1).sum(:total_rps)
+  def self.midgard_rps(duration)
+    Player.where(:realm => 1).sum(duration)
   end
   
-  def self.albion_total_rps
-    Player.where(:realm => 2).sum(:total_rps)
+  def self.albion_rps(duration)
+    Player.where(:realm => 2).sum(duration)
   end
   
   def get_guild_name
