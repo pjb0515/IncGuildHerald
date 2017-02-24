@@ -78,7 +78,7 @@
               <td><%= player.realm_level %></td>
               <td class="<%= player.realm %>"><%= player.realm.capitalize %></td>
               <td><%= player.daoc_class.capitalize %></td>
-              <td><%= link_to player.guild.name, guild_details_path(:name => player.guild.name) %></td>
+              <td><% if !player.guild.blank? %><%= link_to player.get_guild_name, guild_details_path(:name => player.get_guild_name) %><% end %></td>
             </tr>
           <% end %>
         <% end %>

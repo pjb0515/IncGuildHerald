@@ -49,14 +49,6 @@ class Player < ActiveRecord::Base
     return where_statement.limit(25)
   end
   
-  def get_guild_name
-    if guild.nil?
-      ""
-    else
-      return guild.name
-    end
-  end
-  
   def self.hibernia_total_rps
     Player.where(:realm => 0).sum(:total_rps)
   end
@@ -67,6 +59,14 @@ class Player < ActiveRecord::Base
   
   def self.albion_total_rps
     Player.where(:realm => 2).sum(:total_rps)
+  end
+  
+  def get_guild_name
+    if guild.nil?
+      ""
+    else
+      return guild.name
+    end
   end
   
   def calculate_full_rps_gained()

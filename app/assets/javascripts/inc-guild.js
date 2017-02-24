@@ -63,7 +63,7 @@ $(function() {
             "<td>"+this.realm_level+"</td>"+
             "<td class='"+this.realm+"'>"+this.realm.capitalize+"</td>"+
             "<td>"+this.daoc_class.capitalize+"</td>"+
-            "<td><a href='/herald/guild/find?name="+encodeURIComponent(this.guild)+"'>"+this.guild+"</a></td>"+
+            "<td>"+getGuildLinkHtml(this.guild)+"</td>"+
           "</tr>"
         );
       });
@@ -71,6 +71,17 @@ $(function() {
     event.preventDefault();
   });
 });
+
+function getGuildLinkHtml(guildName) {
+  if(isBlank(guildName))
+  {
+    return "";
+  }
+  else
+  {
+    return "<a href='/herald/guild/find?name="+encodeURIComponent(guildName)+"'>"+guildName+"</a>";
+  }
+}
 
 function getTopPlayers(realm, duration, callback)
 {
