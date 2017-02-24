@@ -5,6 +5,15 @@ class PlayerController < ApplicationController
   end
   
   def top_players
-    @players = Player.order("total_rps DESC").limit(25)
+    @realm = params[:realm]
+    @duration = params[:duration]
+    
+    if @realm.blank? or @duration.blank?
+      @players = Player.order("total_rps DESC").limit(25)
+    else
+      @players = Player.get_top_players(@realm, @duration)
+      
+      respond_to :json
+    end
   end
 end

@@ -28,6 +28,27 @@ class Player < ActiveRecord::Base
     return current_player
   end
   
+  def self.get_top_players(realm, duration)
+    where_statement = nil
+    if realm.blank? or realm.eql? "all-realms"
+      where_statement = find(:all)
+    else
+      where_statement = where(realm: realms[realm])
+    end
+    
+    if duration.eql? "all-time"
+      where_statement = where_statement.order("total_rps DESC")
+    elsif duration.eql? "three-days"
+      where_statement = where_statement.order("last_three_days_rps DESC")
+    elsif duration.eql? "seven-days"
+      where_statement = where_statement.order("last_seven_days_rps DESC")
+    elsif duration.eql? "fourteen-days"
+      where_statement = where_statement.order("last_fourteen_days_rps DESC")
+    end
+    
+    return where_statement.limit(25)
+  end
+  
   def get_guild_name
     if guild.nil?
       ""
@@ -74,5 +95,17 @@ class Player < ActiveRecord::Base
     end
     
     return total_rps - rp_snapshot.total_rps
+  end
+  
+  def get_rps_from_duration(duration)
+    if duration.eql? "all-time"
+      return total_rps
+    elsif duration.eql? "three-days"
+      return last_three_days_rps
+    elsif duration.eql? "seven-days"
+      return last_seven_days_rps
+    elsif duration.eql? "fourteen-days"
+      return last_fourteen_days_rps
+    end
   end
 end

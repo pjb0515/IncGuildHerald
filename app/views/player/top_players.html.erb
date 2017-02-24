@@ -58,7 +58,7 @@
       <br/>
 <div class="row">
   <div class="col-xs-12">
-    <table class="table">
+    <table class="table" id="top-players-table">
       <thead>
         <tr>
           <th>Name</th>
@@ -77,7 +77,6 @@
               <td><%= player.total_rps %></td>
               <td><%= player.realm_level %></td>
               <td class="<%= player.realm %>"><%= player.realm.capitalize %></td>
-              <td><%= player.realm_level %></td>
               <td><%= player.daoc_class.capitalize %></td>
               <td><%= link_to player.guild.name, guild_details_path(:name => player.guild.name) %></td>
             </tr>

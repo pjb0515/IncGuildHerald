@@ -53,7 +53,20 @@ $(function() {
     duration = $('input[name=select-duration]:checked').val();
     
     getTopPlayers(realm, duration, function(responseJSON) {
-        
+      $("#top-players-table tr").remove();
+      
+      $.each(responseJSON.players, function() {
+        $("#top-players-table tbody").append(
+          "<tr>"+
+            "<td>"+this.name+"</td>"+
+            "<td>"+this.rps+"</td>"+
+            "<td>"+this.realm_level+"</td>"+
+            "<td class='"+this.realm+"'>"+this.realm.capitalize+"</td>"+
+            "<td>"+this.daoc_class.capitalize+"</td>"+
+            "<td><a href='/herald/guild/find?name="+encodeURIComponent(this.guild)+"'>"+this.guild+"</a></td>"+
+          "</tr>"
+        );
+      });
     });
     event.preventDefault();
   });
