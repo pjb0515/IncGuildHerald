@@ -53,7 +53,7 @@ $(function() {
     duration = $('input[name=select-duration]:checked').val();
     
     getTopPlayers(realm, duration, function(responseJSON) {
-      $("#top-players-table tr").remove();
+      $("#top-players-table tbody tr").remove();
       
       $.each(responseJSON.players, function() {
         $("#top-players-table tbody").append(
