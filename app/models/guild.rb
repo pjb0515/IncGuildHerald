@@ -4,12 +4,6 @@ class Guild < ActiveRecord::Base
   
   enum realm: [ :hibernia, :midgard, :albion, "7" ]
   
-  def self.update_guilds
-    Guild.all.each do |guild|
-      guild.temp_calculate_full_rps_gained
-    end
-  end
-  
   def self.find_or_create(guild_name, realm)
     if guild_name.blank?
       return nil

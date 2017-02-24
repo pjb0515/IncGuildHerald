@@ -205,6 +205,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   jquery-ui-rails
+  kaminari
   pg
   rails (= 5.0.0)
   rails_12factor

@@ -44,6 +44,12 @@ task :process_dump => :environment do
   puts "done."
   
   puts "Updating guilds..."
-  Guild.update_guilds
+  
+  total_pages = Guild.page(1).total_pages
+  for i in 1..total_pages
+    Guild.page(i).each do |guild|
+      guild.temp_calculate_full_rps_gained
+    end
+  end
   puts "done."
 end
