@@ -158,7 +158,7 @@ function getTopGuilds(realm, duration, callback)
 
 $(document).on('turbolinks:load', function() {
   
-  if ( $( "#guild-members-table" ).length && $( "#guild-members-table" ).children().length == 0) {
+  if ( $( "#guild-members-table" ).length ){
     $('#guild-members-table').DataTable();
   }
 
