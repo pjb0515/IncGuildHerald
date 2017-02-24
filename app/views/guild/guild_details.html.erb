@@ -24,7 +24,7 @@
         </tr>
       </thead>
       <tbody>
-        <% if !@players.blank? %>
+        <% if !@guild.blank? %>
           <% @guild.players.each do |player| %>
             <tr>
               <td><%= link_to player.name, player_details_path(player.name) %></td>
