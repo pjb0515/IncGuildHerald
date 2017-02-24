@@ -53,7 +53,7 @@
         </div>
     </div>
     
-    <%= tag :div, class: "realm-player-count", data: {hibernia_count: Player.where(realm: Player.realms['hibernia']), midgard_count: Player.where(realm: Player.realms['midgard']), albion_count: Player.where(realm: Player.realms['albion'])} %>
+    <%= tag :div, class: "realm-player-count", data: {hibernia_count: Player.where(realm: Player.realms['hibernia']).count, midgard_count: Player.where(realm: Player.realms['midgard']).count, albion_count: Player.where(realm: Player.realms['albion']).count} %>
   </div>
 </div>
 <!-- /.row -->
