@@ -94,7 +94,12 @@ class Player < ActiveRecord::Base
       end
     end
     
-    return total_rps - rp_snapshot.total_rps
+    rps_gained = 0
+    
+    if !rp_snapshot.nil?
+      rps_gained = total_rps - rp_snapshot.total_rps
+    end
+    return rps_gained
   end
   
   def get_rps_from_duration(duration)
