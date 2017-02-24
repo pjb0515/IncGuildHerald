@@ -1,5 +1,5 @@
-String.prototype.capitalize = function() {
-    return this.charAt(0).toUpperCase() + this.slice(1);
+function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 function isBlank(str) {
@@ -61,8 +61,8 @@ $(function() {
             "<td>"+this.name+"</td>"+
             "<td>"+this.rps+"</td>"+
             "<td>"+this.realm_level+"</td>"+
-            "<td class='"+this.realm+"'>"+this.realm.capitalize+"</td>"+
-            "<td>"+this.daoc_class.capitalize+"</td>"+
+            "<td class='"+this.realm+"'>"+capitalize(this.realm)+"</td>"+
+            "<td>"+capitalize(this.daoc_class)+"</td>"+
             "<td>"+getGuildLinkHtml(this.guild)+"</td>"+
           "</tr>"
         );
