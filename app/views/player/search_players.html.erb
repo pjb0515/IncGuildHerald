@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h1>Character seach results for - <%= @search_name %></h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <% @players.each do |player| %>
+      <p>Name: <%= link_to player.name, player_details_path(player.name) %></p>
+    <% end %>
+  </div>
+</div>
