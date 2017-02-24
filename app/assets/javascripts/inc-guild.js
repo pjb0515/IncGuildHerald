@@ -158,8 +158,18 @@ function getTopGuilds(realm, duration, callback)
 
 $(document).on('turbolinks:load', function() {
   
-  if ( $( "#guild-members-table" ).length && !$("#guild-members-table_wrapper").length ){
-    $('#guild-members-table').DataTable();
+  if ( $( "#guild-members-table" ).length ){
+    if(!$("#guild-members-table_wrapper").length)
+    {
+      $('#guild-members-table').DataTable();
+    }
+    else
+    {
+      $('#guild-members-table').DataTable( {
+        "paging":   false,
+        "searching": false
+      });
+    }
   }
 
   if ( $( "#rp-distribution-chart" ).length && $( "#rp-distribution-chart" ).children().length == 0) {
