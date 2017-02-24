@@ -1,16 +1,29 @@
 
 <div class="row">
-  <div class="col-lg-12">
+  <div class="col-md-6">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i> Realm Point Distribution</h3>
         </div>
         <div class="panel-body">
-          <div id="morris-donut-chart"></div>
+          <div id="rp-distribution-chart"></div>
         </div>
     </div>
     
     <%= tag :div, class: "realm_total_rps", data: {hibernia_total_rps: Player.hibernia_total_rps, midgard_total_rps: Player.midgard_total_rps, albion_total_rps: Player.albion_total_rps} %>
+  </div>
+  
+  <div class="col-md-6">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i> Level 50 Distribution</h3>
+        </div>
+        <div class="panel-body">
+          <div id="level-50-distribution-chart"></div>
+        </div>
+    </div>
+    
+    <%= tag :div, class: "realm-level-50s", data: {hibernia_total_50s: Player.where(realm: realms['hibernia'], level: 50).count, midgard_total_50s: Player.where(realm: realms['midgard'], level: 50).count, albion_total_50s: Player.where(realm: realms['albion'], level: 50).count} %>
   </div>
 </div>
 <!-- /.row -->

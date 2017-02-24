@@ -158,10 +158,10 @@ function getTopGuilds(realm, duration, callback)
 
 $(document).on('turbolinks:load', function() {
 
-  if ( $( "#morris-donut-chart" ).length && $( "#morris-donut-chart" ).children().length == 0) {
+  if ( $( "#rp-distribution-chart" ).length && $( "#rp-distribution-chart" ).children().length == 0) {
     // Donut Chart
     Morris.Donut({
-        element: 'morris-donut-chart',
+        element: 'rp-distribution-chart',
         colors: ["green", "blue", "red"],
         data: [{
             label: "Hibernia",
@@ -172,6 +172,25 @@ $(document).on('turbolinks:load', function() {
         }, {
             label: "Albion",
             value: $(".realm_total_rps").data("albion-total-rps")
+        }],
+        resize: true
+    });
+  }
+  
+  if ( $( "#level-50-distribution-chart" ).length && $( "#level-50-distribution-chart" ).children().length == 0) {
+    // Donut Chart
+    Morris.Donut({
+        element: 'level-50-distribution-chart',
+        colors: ["green", "blue", "red"],
+        data: [{
+            label: "Hibernia",
+            value: $(".realm-level-50s").data("hibernia-total-50s")
+        }, {
+            label: "Midgard",
+            value: $(".realm-level-50s").data("midgard-total-50s")
+        }, {
+            label: "Albion",
+            value: $(".realm-level-50s").data("albion-total-50s")
         }],
         resize: true
     });
