@@ -31,7 +31,7 @@ class Player < ActiveRecord::Base
   def self.get_top_players(realm, duration)
     where_statement = nil
     if realm.blank? or realm.eql? "all-realms"
-      where_statement = find(:all)
+      where_statement = Player.all
     else
       where_statement = where(realm: realms[realm])
     end
