@@ -69,7 +69,7 @@ $( document ).on('turbolinks:load', function() {
       });
     });
     event.preventDefault();
-    $("input[type=submit]").removeAttr('disabled');
+    currentForm.formValidation('disableSubmitButtons', false);
   });
   
   $(".search-top-guilds-form").bind('submit', function(event) {
@@ -96,7 +96,7 @@ $( document ).on('turbolinks:load', function() {
       });
     });
     event.preventDefault();
-    $("input[type=submit]").removeAttr('disabled');
+    currentForm.formValidation('disableSubmitButtons', false);
   });
 });
 
