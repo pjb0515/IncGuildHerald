@@ -10,8 +10,35 @@
 </div>
 <div class="row">
   <div class="col-xs-12">
-    <% @guild.players.each do |guild_member| %>
-      <p>Name: <%= link_to guild_member.name, player_details_path(:name => guild_member.name) %></p>
-    <% end %>
+    <table class="table" id="top-players-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Realm Points</th>
+          <th>RPs-Last 3 Days</th>
+          <th>RPs-Last 7 Days</th>
+          <th>RPs-Last 14 Days</th>
+          <th>Realm Rank</th>
+          <th>Class</th>
+          <th>Race</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if !@players.blank? %>
+          <% @guild.players.each do |player| %>
+            <tr>
+              <td><%= link_to player.name, player_details_path(player.name) %></td>
+              <td><%= player.total_rps %></td>
+              <td><%= player.last_three_days_rps %></td>
+              <td><%= player.last_seven_days_rps %></td>
+              <td><%= player.last_fourteen_days_rps %></td>
+              <td><%= player.realm_level %></td>
+              <td><%= player.daoc_class.capitalize %></td>
+              <td><%= player.race.capitalize %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
