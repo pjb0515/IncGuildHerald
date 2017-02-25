@@ -2,7 +2,7 @@ desc "This task is called by the Heroku scheduler add-on to process the Uthgard 
 task :process_dump => :environment do
   puts "Updating characters..."
   
-  url = URI.parse('https://uthgard.org/herald/api/dump')
+  url = URI.parse('https://www2.uthgard.net/herald/api/dump')
       
   http = Net::HTTP.new(url.host, 443)
   http.use_ssl = true
