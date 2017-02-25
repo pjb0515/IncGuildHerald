@@ -22,7 +22,7 @@ task :process_dump => :environment do
     single_player_json = "{ " + single_player_json
     
     #If last item, remove double close brace.
-    if i == split_length
+    if i == split_length - 1
       single_player_json = single_player_json.gsub(/}\s+}/, "}")
     end
     
