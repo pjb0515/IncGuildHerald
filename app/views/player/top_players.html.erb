@@ -74,7 +74,7 @@
         <% if !@players.blank? %>
           <% @players.each_with_index do |player, i| %>
             <tr>
-              <td><%= i %></td>
+              <td><%= i+1 %></td>
               <td><%= player.name %></td>
               <td><%= player.total_rps %></td>
               <td><%= player.realm_level %></td>
