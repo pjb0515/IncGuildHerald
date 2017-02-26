@@ -5,7 +5,7 @@
 </div>
 <div class="row">
   <div class="col-xs-12">
-    <table class="table" id="guild-members-table">
+    <table class="table" id="guild-details-table">
       <thead>
         <tr>
           <th>Realm Points</th>
@@ -14,7 +14,7 @@
           <th>RPs-Last 14 Days</th>
           <th># of Characters</th>
           <th>Overall Rank (Past 7 days)</th>
-          <th><b class="@guild.realm"><%= @guild.realm.capitalize %></b> Rank (Past 7 days)</th>
+          <th><b class="<%= @guild.realm %>"><%= @guild.realm.capitalize %></b> Rank (Past 7 days)</th>
         </tr>
       </thead>
       <tbody>
