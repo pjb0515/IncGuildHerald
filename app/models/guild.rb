@@ -85,9 +85,9 @@ class Guild < ActiveRecord::Base
   def get_rank(duration)
     guild_list = nil
     if duration.eql? "overall"
-      guild_list = Guild.all(:order=>'total_rps DESC')
+      guild_list = Guild.all.order('total_rps DESC')
     else
-      guild_list = Guild.all(:order=>duration+' DESC')
+      guild_list = Guild.all.order(duration+' DESC')
     end
     answers.map(&:id).index(id) #This will return 1
   end
