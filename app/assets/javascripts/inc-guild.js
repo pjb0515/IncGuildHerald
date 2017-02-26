@@ -52,7 +52,19 @@ $( document ).on('turbolinks:load', function() {
     realm = $('input[name=select-realm]:checked').val();
     duration = $('input[name=select-duration]:checked').val();
     
-    getTopPlayers(realm, duration, function(responseJSON) {
+    daocClass = "all-classes";
+    
+    if(realm == "hibernia")
+    {
+      var classType = $('input[name=select-hib-class-type]:checked').val();
+      
+      if (classType !== "all-classes")
+      {
+        daocClass = $('input[name=select-hib-class-"+classType+"]:checked').val();
+      }        
+    }
+    
+    getTopPlayers(realm, duration, daocClass, function(responseJSON) {
       $("#top-players-table tbody tr").remove();
       
       $.each(responseJSON.players, function(index) {
@@ -100,20 +112,30 @@ $( document ).on('turbolinks:load', function() {
   });
   
   $('input[type=radio][name=select-realm]').bind('change', function() {
-      if (this.value == 'hibernia') {
-          $(".top-players-hib-class-type-filter").toggle();
-      }
-      else if (this.value == 'midgard') {
-          $(".top-players-mid-class-type-filter").toggle();
-      }
+    $(".top-players-class-type-filter").hide();
+    $(".top-players-class-filter").hide();
+    if (this.value == 'hibernia') {
+        $(".top-players-hib-class-type-filter").show();
+    }
+    else if (this.value == 'midgard') {
+        $(".top-players-mid-class-type-filter").show();
+    }
   });
   
   $('input[type=radio][name=select-hib-class-type]').bind('change', function() {
-      $(".top-players-hib-class-"+this.value+"-filter").toggle();
+    $(".top-players-class-filter").hide();
+    
+    if(this.value !== "all-classes") {
+      $(".top-players-hib-class-"+this.value+"-filter").show();
+    }
   });
   
   $('input[type=radio][name=select-mid-class-type]').bind('change', function() {
-    $(".top-players-mid-class-"+this.value+"-filter").toggle();
+    $(".top-players-class-filter").hide();
+    
+    if(this.value !== "all-classes") {
+      $(".top-players-mid-class-"+this.value+"-filter").show();
+    }
   });
 });
 
@@ -128,10 +150,11 @@ function getGuildLinkHtml(guildName) {
   }
 }
 
-function getTopPlayers(realm, duration, callback)
+function getTopPlayers(realm, duration, daocClass, callback)
 {
   var params = "realm="+realm+
-                  "&duration="+duration;
+                  "&duration="+duration+
+                  "&daoc_class="+daocClass;
   var xmlhttp = createCORSRequest('GET', "/herald/player/top_rps?"+params);
 	if(!xmlhttp)
 	{

@@ -28,12 +28,16 @@ class Player < ActiveRecord::Base
     return current_player
   end
   
-  def self.get_top_players(realm, duration)
+  def self.get_top_players(realm, duration, daoc_class)
     where_statement = nil
     if realm.blank? or realm.eql? "all-realms"
       where_statement = Player.all
     else
-      where_statement = where(realm: realms[realm])
+      if daoc_class.eql? "all-classes"
+        where_statement = where(realm: realms[realm])
+      else
+        where_statement = where(realm: realms[realm], daoc_class: daoc_class)
+      end
     end
     
     if duration.eql? "all-time"
