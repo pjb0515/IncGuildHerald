@@ -163,7 +163,8 @@ $(document).on('turbolinks:load', function() {
   if ( $( "#guild-members-table" ).length ){
     $('#guild-members-table').DataTable( {
       "paging":   false,
-      "searching": false
+      "searching": false,
+      "info": false
     });
   }
 
