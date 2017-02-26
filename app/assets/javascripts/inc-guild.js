@@ -60,7 +60,7 @@ $( document ).on('turbolinks:load', function() {
       
       if (classType !== "all-classes")
       {
-        daocClass = $('input[name=select-hib-class-"+classType+"]:checked').val();
+        daocClass = $('input[name=select-hib-class-'+classType+']:checked').val();
       }        
     }
     
