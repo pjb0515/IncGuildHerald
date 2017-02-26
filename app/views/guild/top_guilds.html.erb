@@ -61,6 +61,7 @@
     <table class="table" id="top-guilds-table">
       <thead>
         <tr>
+          <th>#</th>
           <th>Name</th>
           <th>Realm Points</th>
           <th>Realm</th>
@@ -69,8 +70,9 @@
       </thead>
       <tbody>
         <% if !@guilds.blank? %>
-          <% @guilds.each do |guild| %>
+          <% @guilds.each_with_index do |guild, i| %>
             <tr>
+              <td><%= i %></td>
               <td><%= link_to guild.name, guild_details_path(:name => guild.name) %></td>
               <td><%= guild.total_rps %></td>
               <td class="<%= guild.realm %>"><%= guild.realm.capitalize %></td>

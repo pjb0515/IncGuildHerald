@@ -55,9 +55,10 @@ $( document ).on('turbolinks:load', function() {
     getTopPlayers(realm, duration, function(responseJSON) {
       $("#top-players-table tbody tr").remove();
       
-      $.each(responseJSON.players, function() {
+      $.each(responseJSON.players, function(index) {
         $("#top-players-table tbody").append(
           "<tr>"+
+            "<td>"+(index+1)+"</td>"+
             "<td>"+this.name+"</td>"+
             "<td>"+this.rps+"</td>"+
             "<td>"+this.realm_level+"</td>"+
@@ -83,9 +84,10 @@ $( document ).on('turbolinks:load', function() {
     getTopGuilds(realm, duration, function(responseJSON) {
       $("#top-guilds-table tbody tr").remove();
       
-      $.each(responseJSON.guilds, function() {
+      $.each(responseJSON.guilds, function(index) {
         $("#top-guilds-table tbody").append(
           "<tr>"+
+            "<td>"+(index+1)+"</td>"+
             "<td>"+getGuildLinkHtml(this.name)+"</td>"+
             "<td>"+this.rps+"</td>"+
             "<td class='"+this.realm+"'>"+capitalize(this.realm)+"</td>"+
@@ -159,17 +161,10 @@ function getTopGuilds(realm, duration, callback)
 $(document).on('turbolinks:load', function() {
   
   if ( $( "#guild-members-table" ).length ){
-    if(!$("#guild-members-table_wrapper").length)
-    {
-      $('#guild-members-table').DataTable();
-    }
-    else
-    {
-      $('#guild-members-table').DataTable( {
-        "paging":   false,
-        "searching": false
-      });
-    }
+    $('#guild-members-table').DataTable( {
+      "paging":   false,
+      "searching": false
+    });
   }
 
   if ( $( "#rp-distribution-chart" ).length && $( "#rp-distribution-chart" ).children().length == 0) {

@@ -61,6 +61,7 @@
     <table class="table" id="top-players-table">
       <thead>
         <tr>
+          <th>#</th>
           <th>Name</th>
           <th>Realm Points</th>
           <th>Realm Rank</th>
@@ -71,8 +72,9 @@
       </thead>
       <tbody>
         <% if !@players.blank? %>
-          <% @players.each do |player| %>
+          <% @players.each_with_index do |player, i| %>
             <tr>
+              <td><%= i %></td>
               <td><%= player.name %></td>
               <td><%= player.total_rps %></td>
               <td><%= player.realm_level %></td>
