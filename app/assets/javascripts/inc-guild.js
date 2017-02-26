@@ -98,6 +98,23 @@ $( document ).on('turbolinks:load', function() {
     });
     event.preventDefault();
   });
+  
+  $('input[type=radio][name=select-realm]').bind('change', function() {
+      if (this.value == 'hibernia') {
+          $(".top-players-hib-class-type-filter").toggle();
+      }
+      else if (this.value == 'midgard') {
+          $(".top-players-mid-class-type-filter").toggle();
+      }
+  });
+  
+  $('input[type=radio][name=select-hib-class-type]').bind('change', function() {
+      $(".top-players-hib-class-"+this.value+"-filter").toggle();
+  });
+  
+  $('input[type=radio][name=select-mid-class-type]').bind('change', function() {
+    $(".top-players-mid-class-"+this.value+"-filter").toggle();
+  });
 });
 
 function getGuildLinkHtml(guildName) {
