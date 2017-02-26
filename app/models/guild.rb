@@ -81,4 +81,24 @@ class Guild < ActiveRecord::Base
       return last_fourteen_days_rps
     end
   end
+  
+  def get_rank(duration)
+    guild_list = nil
+    if duration.eql "overall"
+      guild_list = Guild.all(:order=>'total_rps DESC')
+    else
+      guild_list = Guild.all(:order=>duration+' DESC')
+    end
+    answers.map(&:id).index(id) #This will return 1
+  end
+  
+  def get_rank_in_realm(duration)
+    guild_list = nil
+    if duration.eql "overall"
+      guild_list = Guild.where(realm: realm).order('total_rps DESC')
+    else
+      guild_list =  Guild.where(realm: realm).order(duration+' DESC')
+    end
+    answers.map(&:id).index(id) #This will return 1
+  end
 end
