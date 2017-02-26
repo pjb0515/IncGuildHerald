@@ -113,4 +113,34 @@ class Player < ActiveRecord::Base
       return last_fourteen_days_rps
     end
   end
+  
+    def get_rank(duration)
+    #Ranking only calculated for characters 45 and above
+    if level < 45
+      return "N/A"
+    end
+    
+    player_list = nil
+    if duration.eql? "overall"
+      player_list = Player.where(level: 45..50).order('total_rps DESC')
+    else
+      player_list = Player.where(level: 45..50).order(duration+' DESC')
+    end
+    player_list.map(&:id).index(id)+1
+  end
+  
+  def get_rank_in_realm(duration)
+    #Ranking only calculated for characters 45 and above
+    if level < 45
+      return "N/A"
+    end
+    
+    player_list = nil
+    if duration.eql? "overall"
+      player_list = Guild.where(realm: realm, level: 45..50).order('total_rps DESC')
+    else
+      player_list =  Guild.where(realm: realm, level: 45..50).order(duration+' DESC')
+    end
+    player_list.map(&:id).index(id)+1
+  end
 end

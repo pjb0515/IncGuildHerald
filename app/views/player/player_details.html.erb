@@ -1,9 +1,32 @@
 <div class="row">
   <div class="col-xs-12">
-    <h1>Character Details</h1>
+    <h1>Character Details - <%= @player.name %></h1>
   </div>
+</div>
+
+<div class="row">
   <div class="col-xs-12">
-    <%= label_tag "Character Name" %> - <%= @player.name %>
-    <%= label_tag "Guild Name" %> - <%= @player.get_guild_name %>
+    <table class="table" id="guild-details-table">
+      <thead>
+        <tr>
+          <th>Realm Points</th>
+          <th>RPs-Last 3 Days</th>
+          <th>RPs-Last 7 Days</th>
+          <th>RPs-Last 14 Days</th>
+          <th>Overall Rank (Past 7 days)</th>
+          <th><b class="<%= @player.realm %>"><%= @player.realm.capitalize %></b> Rank (Past 7 days)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @player.total_rps %></td>
+          <td><%= @player.last_three_days_rps %></td>
+          <td><%= @player.last_seven_days_rps %></td>
+          <td><%= @player.last_fourteen_days_rps %></td>
+          <td><%= @player.get_rank("overall") %> (<%= @player.get_rank("last_seven_days_rps") %>)</td>
+          <td><%= @player.get_rank_in_realm("overall") %> (<%= @player.get_rank_in_realm("last_seven_days_rps") %>)</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
