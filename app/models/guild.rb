@@ -84,7 +84,7 @@ class Guild < ActiveRecord::Base
   
   def get_rank(duration)
     guild_list = nil
-    if duration.eql "overall"
+    if duration.eql? "overall"
       guild_list = Guild.all(:order=>'total_rps DESC')
     else
       guild_list = Guild.all(:order=>duration+' DESC')
@@ -94,7 +94,7 @@ class Guild < ActiveRecord::Base
   
   def get_rank_in_realm(duration)
     guild_list = nil
-    if duration.eql "overall"
+    if duration.eql? "overall"
       guild_list = Guild.where(realm: realm).order('total_rps DESC')
     else
       guild_list =  Guild.where(realm: realm).order(duration+' DESC')
