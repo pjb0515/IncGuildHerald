@@ -89,7 +89,7 @@ class Guild < ActiveRecord::Base
     else
       guild_list = Guild.all.order(duration+' DESC')
     end
-    guild_list.map(&:id).index(id) #This will return 1
+    guild_list.map(&:id).index(id)+1
   end
   
   def get_rank_in_realm(duration)
@@ -99,6 +99,6 @@ class Guild < ActiveRecord::Base
     else
       guild_list =  Guild.where(realm: realm).order(duration+' DESC')
     end
-    guild_list.map(&:id).index(id) #This will return 1
+    guild_list.map(&:id).index(id)+1
   end
 end
