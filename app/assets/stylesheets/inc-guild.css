@@ -33,3 +33,10 @@
 .side-nav a>i {
   color: #508;
 }
+.navbar-toggle {
+  background-color: #508;
+}
+.icon-bar {
+  
+    background-color: #DDD;
+}
