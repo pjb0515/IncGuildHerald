@@ -63,6 +63,24 @@ $( document ).on('turbolinks:load', function() {
         daocClass = $('input[name=select-hib-class-'+classType+']:checked').val();
       }        
     }
+    else if (realm == "midgard")
+    {
+      var classType = $('input[name=select-mid-class-type]:checked').val();
+      
+      if (classType !== "all-classes")
+      {
+        daocClass = $('input[name=select-mid-class-'+classType+']:checked').val();
+      }  
+    }
+    else if (realm == "albion")
+    {
+      var classType = $('input[name=select-alb-class-type]:checked').val();
+      
+      if (classType !== "all-classes")
+      {
+        daocClass = $('input[name=select-alb-class-'+classType+']:checked').val();
+      }  
+    }
     
     getTopPlayers(realm, duration, daocClass, function(responseJSON) {
       $("#top-players-table tbody tr").remove();
@@ -120,6 +138,9 @@ $( document ).on('turbolinks:load', function() {
     else if (this.value == 'midgard') {
         $(".top-players-mid-class-type-filter").show();
     }
+    else if (this.value == 'albion') {
+        $(".top-players-alb-class-type-filter").show();
+    }
   });
   
   $('input[type=radio][name=select-hib-class-type]').bind('change', function() {
@@ -135,6 +156,14 @@ $( document ).on('turbolinks:load', function() {
     
     if(this.value !== "all-classes") {
       $(".top-players-mid-class-"+this.value+"-filter").show();
+    }
+  });
+  
+  $('input[type=radio][name=select-alb-class-type]').bind('change', function() {
+    $(".top-players-class-filter").hide();
+    
+    if(this.value !== "all-classes") {
+      $(".top-players-alb-class-"+this.value+"-filter").show();
     }
   });
 });
