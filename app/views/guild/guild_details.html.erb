@@ -1,6 +1,34 @@
 <div class="row">
   <div class="col-xs-12">
-    <h1>Guild Details - <%= @guild.name %></h1>
+    <h1>Guild Details - <span class="<%= @guild.realm %>"><%= @guild.name %></span></h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <table class="table" id="guild-details-table">
+      <thead>
+        <tr>
+          <th>Realm Points</th>
+          <th>RPs-Last 3 Days</th>
+          <th>RPs-Last 7 Days</th>
+          <th>RPs-Last 14 Days</th>
+          <th># of Characters</th>
+          <th>Overall Rank (Past 7 days)</th>
+          <th><b class="<%= @guild.realm %>"><%= @guild.realm.capitalize %></b> Rank (Past 7 days)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @guild.total_rps %></td>
+          <td><%= @guild.last_three_days_rps %></td>
+          <td><%= @guild.last_seven_days_rps %></td>
+          <td><%= @guild.last_fourteen_days_rps %></td>
+          <td><%= @guild.players.count %></td>
+          <td><%= @guild.get_rank("overall") %> (<%= @guild.get_rank("last_seven_days_rps") %>)</td>
+          <td><%= @guild.get_rank_in_realm("overall") %> (<%= @guild.get_rank_in_realm("last_seven_days_rps") %>)</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
 <div class="row">
@@ -24,7 +52,7 @@
         </tr>
       </thead>
       <tbody>
-        <% if !@guild.blank? %>
+        <% if !@guild.players.blank? %>
           <% @guild.players.each do |player| %>
             <tr>
               <td><%= link_to player.name, player_details_path(player.name) %></td>

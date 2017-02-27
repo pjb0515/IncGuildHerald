@@ -3,7 +3,7 @@
   <div class="col-xs-12">
     <%= form_tag( top_players_path, method: :get, :class => 'search-top-players-form') do %>
       <div class="row top-players-filter-holder">
-        <div class="col-xs-6 top-players-realm-filter">
+        <div class="col-xs-3 top-players-realm-filter">
           <div>
             <h4>Realm</h4>
           </div>
@@ -24,7 +24,7 @@
             <%= label_tag 'select-realm_albion', "Albion" %>
           </div>
         </div>
-        <div class="col-xs-6 top-players-duration-filter">
+        <div class="col-xs-3 top-players-duration-filter">
           <div>
             <h4>Duration</h4>
           </div>
@@ -45,6 +45,324 @@
             <%= label_tag 'select-duration_fourteen-days', "Last Two Weeks" %>
           </div>
         </div>
+        <div class="col-xs-3 top-players-hib-class-type-filter top-players-class-type-filter" style="display: none;">
+          <div>
+            <h4>Hibernia Class Type</h4>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-hib-class-type', 'all-classes', true %>
+            <%= label_tag 'select-hib-class-type_all-classes', "All Classes" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-hib-class-type', 'naturalist' %>
+            <%= label_tag 'select-hib-class-type_naturalist', "Naturalist" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-hib-class-type', 'stalker' %>
+            <%= label_tag 'select-hib-class-type_stalker', "Stalker" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-hib-class-type', 'guardian' %>
+            <%= label_tag 'select-hib-class-type_guardian', "Guardian" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-hib-class-type', 'magician' %>
+            <%= label_tag 'select-hib-class-type_magician', "Magician" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-hib-class-type', 'forester' %>
+            <%= label_tag 'select-hib-class-type_forester', "Forester" %>
+          </div>
+        </div>
+        <div class="col-xs-3 top-players-mid-class-type-filter top-players-class-type-filter" style="display: none;">
+          <div>
+            <h4>Midgard Class Type</h4>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-mid-class-type', 'all-classes', true %>
+            <%= label_tag 'select-mid-class-type_all-classes', "All Classes" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-mid-class-type', 'viking' %>
+            <%= label_tag 'select-mid-class-type_viking', "Viking" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-mid-class-type', 'seer' %>
+            <%= label_tag 'select-mid-class-type_seer', "Seer" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-mid-class-type', 'mystic' %>
+            <%= label_tag 'select-mid-class-type_mystic', "Mystic" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-mid-class-type', 'rogue' %>
+            <%= label_tag 'select-mid-class-type_rogue', "Rogue" %>
+          </div>
+        </div>
+        <div class="col-xs-3 top-players-alb-class-type-filter top-players-class-type-filter" style="display: none;">
+          <div>
+            <h4>Albion Class Type</h4>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-alb-class-type', 'all-classes', true %>
+            <%= label_tag 'select-alb-class-type_all-classes', "All Classes" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-alb-class-type', 'fighter' %>
+            <%= label_tag 'select-alb-class-type_fighter', "Fighter" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-alb-class-type', 'acolyte' %>
+            <%= label_tag 'select-alb-class-type_acolyte', "Acolyte" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-alb-class-type', 'rogue' %>
+            <%= label_tag 'select-alb-class-type_rogue', "Rogue" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-alb-class-type', 'mage' %>
+            <%= label_tag 'select-alb-class-type_mage', "Mage" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-alb-class-type', 'elementalist' %>
+            <%= label_tag 'select-alb-class-type_elementalist', "Elementalist" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-alb-class-type', 'disciple' %>
+            <%= label_tag 'select-alb-class-type_disciple', "Disciple" %>
+          </div>
+        </div>
+        <div class="col-xs-3 top-players-hib-class-naturalist-filter top-players-class-filter" style="display: none;">
+          <div>
+            <h4>Hibernia Class</h4>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-hib-class-naturalist', 'druid', true %>
+            <%= label_tag 'select-hib-class-naturalist_druid', "Druid" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-hib-class-naturalist', 'bard' %>
+            <%= label_tag 'select-hib-class-naturalist_bard', "Bard" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-hib-class-naturalist', 'warden' %>
+            <%= label_tag 'select-hib-class-naturalist_warden', "Warden" %>
+          </div>
+        </div>
+        <div class="col-xs-3 top-players-hib-class-stalker-filter top-players-class-filter" style="display: none;">
+          <div>
+            <h4>Hibernia Class</h4>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-hib-class-stalker', 'ranger', true %>
+            <%= label_tag 'select-hib-class-stalker_ranger', "Ranger" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-hib-class-stalker', 'nightshade' %>
+            <%= label_tag 'select-hib-class-stalker_nightshade', "Nightshade" %>
+          </div>
+        </div>
+        <div class="col-xs-3 top-players-hib-class-guardian-filter top-players-class-filter" style="display: none;">
+          <div>
+            <h4>Hibernia Class</h4>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-hib-class-guardian', 'hero', true %>
+            <%= label_tag 'select-hib-class-guardian_hero', "Hero" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-hib-class-guardian', 'blademaster' %>
+            <%= label_tag 'select-hib-class-guardian_blademaster', "Blademaster" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-hib-class-guardian', 'champion' %>
+            <%= label_tag 'select-hib-class-guardian_champion', "Champion" %>
+          </div>
+        </div>
+        <div class="col-xs-3 top-players-hib-class-magician-filter top-players-class-filter" style="display: none;">
+          <div>
+            <h4>Hibernia Class</h4>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-hib-class-magician', 'eldritch', true %>
+            <%= label_tag 'select-hib-class-magician_eldritch', "Eldritch" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-hib-class-magician', 'enchanter' %>
+            <%= label_tag 'select-hib-class-magician_enchanter', "Enchanter" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-hib-class-magician', 'mentalist' %>
+            <%= label_tag 'select-hib-class-magician_mentalist', "Mentalist" %>
+          </div>
+        </div>
+        <div class="col-xs-3 top-players-hib-class-forester-filter top-players-class-filter" style="display: none;">
+          <div>
+            <h4>Hibernia Class</h4>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-hib-class-forester', 'animist', true %>
+            <%= label_tag 'select-hib-class-forester_animist', "Animist" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-hib-class-forester', 'valewalker', true %>
+            <%= label_tag 'select-hib-class-forester_valewalker', "Valewalker" %>
+          </div>
+        </div>
+        <div class="col-xs-3 top-players-mid-class-viking-filter top-players-class-filter" style="display: none;">
+          <div>
+            <h4>Midgard Class</h4>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-mid-class-viking', 'berserker', true %>
+            <%= label_tag 'select-mid-class-viking_berserker', "Berserker" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-mid-class-viking', 'savage' %>
+            <%= label_tag 'select-mid-class-viking_Savage', "Savage" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-mid-class-viking', 'skald' %>
+            <%= label_tag 'select-mid-class-viking_skald', "Skald" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-mid-class-viking', 'warrior' %>
+            <%= label_tag 'select-mid-class-viking_warrior', "Warrior" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-mid-class-viking', 'thane' %>
+            <%= label_tag 'select-mid-class-viking_than', "Thane" %>
+          </div>
+        </div>
+        <div class="col-xs-3 top-players-mid-class-seer-filter top-players-class-filter" style="display: none;">
+          <div>
+            <h4>Midgard Class</h4>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-mid-class-seer', 'healer', true %>
+            <%= label_tag 'select-mid-class-viking_healer', "Healer" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-mid-class-seer', 'shaman' %>
+            <%= label_tag 'select-mid-class-viking_shaman', "Shaman" %>
+          </div>
+        </div>
+        <div class="col-xs-3 top-players-mid-class-mystic-filter top-players-class-filter" style="display: none;">
+          <div>
+            <h4>Midgard Class</h4>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-mid-class-mystic', 'runemaster', true %>
+            <%= label_tag 'select-mid-class-mystic_runemaster', "Runemaster" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-mid-class-mystic', 'spiritmaster' %>
+            <%= label_tag 'select-mid-class-mystic_spiritmaster', "Spiritmaster" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-mid-class-mystic', 'bonedancer' %>
+            <%= label_tag 'select-mid-class-mystic_bonedancer', "Bonedancer" %>
+          </div>
+        </div>
+        <div class="col-xs-3 top-players-mid-class-rogue-filter top-players-class-filter" style="display: none;">
+          <div>
+            <h4>Midgard Class</h4>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-mid-class-rogue', 'hunter', true %>
+            <%= label_tag 'select-mid-class-rogue_hunter', "Hunter" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-mid-class-rogue', 'shadowblade' %>
+            <%= label_tag 'select-mid-class-rogue_shadowblade', "Shadowblade" %>
+          </div>
+        </div>
+        <div class="col-xs-3 top-players-alb-class-fighter-filter top-players-class-filter" style="display: none;">
+          <div>
+            <h4>Albion Class</h4>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-alb-class-fighter', 'armsman', true %>
+            <%= label_tag 'select-alb-class-fighter_armsman', "Armsman" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-alb-class-fighter', 'paladin' %>
+            <%= label_tag 'select-alb-class-fighter_paladin', "Paladin" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-alb-class-fighter', 'mercenary' %>
+            <%= label_tag 'select-alb-class-fighter_mercenary', "Mercenary" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-alb-class-fighter', 'reaver' %>
+            <%= label_tag 'select-alb-class-fighter_reaver', "Reaver" %>
+          </div>
+        </div>
+        <div class="col-xs-3 top-players-alb-class-acolyte-filter top-players-class-filter" style="display: none;">
+          <div>
+            <h4>Albion Class</h4>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-alb-class-acolyte', 'cleric', true %>
+            <%= label_tag 'select-alb-class-acolyte_cleric', "Cleric" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-alb-class-acolyte', 'friar' %>
+            <%= label_tag 'select-alb-class-acolyte_friar', "Friar" %>
+          </div>
+        </div>
+        <div class="col-xs-3 top-players-alb-class-rogue-filter top-players-class-filter" style="display: none;">
+          <div>
+            <h4>Albion Class</h4>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-alb-class-rogue', 'minstrel', true %>
+            <%= label_tag 'select-alb-class-rogue_minstrel', "Minstrel" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-alb-class-rogue', 'scout' %>
+            <%= label_tag 'select-alb-class-rogue_scout', "Scout" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-alb-class-rogue', 'infiltrator' %>
+            <%= label_tag 'select-alb-class-rogue_infiltrator', "Infiltrator" %>
+          </div>
+        </div>
+        <div class="col-xs-3 top-players-alb-class-mage-filter top-players-class-filter" style="display: none;">
+          <div>
+            <h4>Albion Class</h4>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-alb-class-mage', 'sorcerer', true %>
+            <%= label_tag 'select-alb-class-mage_sorcerer', "Sorcerer" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-alb-class-mage', 'cabalist' %>
+            <%= label_tag 'select-alb-class-mage_cabalist', "Cabalist" %>
+          </div>
+        </div>
+        <div class="col-xs-3 top-players-alb-class-elementalist-filter top-players-class-filter" style="display: none;">
+          <div>
+            <h4>Albion Class</h4>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-alb-class-elementalist', 'wizard', true %>
+            <%= label_tag 'select-alb-class-elementalist_wizard', "Wizard" %>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-alb-class-elementalist', 'theurgist' %>
+            <%= label_tag 'select-alb-class-elementalist_theurgist', "Theurgist" %>
+          </div>
+        </div>
+        <div class="col-xs-3 top-players-alb-class-disciple-filter top-players-class-filter" style="display: none;">
+          <div>
+            <h4>Albion Class</h4>
+          </div>
+          <div>
+            <%= radio_button_tag 'select-alb-class-disciple', 'necromancer', true %>
+            <%= label_tag 'select-alb-class-disciple_necromancer', "Necromancer" %>
+          </div>
+        </div>
       </div>
       <br/>
       <div class="row">
@@ -61,6 +379,7 @@
     <table class="table" id="top-players-table">
       <thead>
         <tr>
+          <th>#</th>
           <th>Name</th>
           <th>Realm Points</th>
           <th>Realm Rank</th>
@@ -71,8 +390,9 @@
       </thead>
       <tbody>
         <% if !@players.blank? %>
-          <% @players.each do |player| %>
+          <% @players.each_with_index do |player, i| %>
             <tr>
+              <td><%= i+1 %></td>
               <td><%= player.name %></td>
               <td><%= player.total_rps %></td>
               <td><%= player.realm_level %></td>

@@ -52,12 +52,43 @@ $( document ).on('turbolinks:load', function() {
     realm = $('input[name=select-realm]:checked').val();
     duration = $('input[name=select-duration]:checked').val();
     
-    getTopPlayers(realm, duration, function(responseJSON) {
+    daocClass = "all-classes";
+    
+    if(realm == "hibernia")
+    {
+      var classType = $('input[name=select-hib-class-type]:checked').val();
+      
+      if (classType !== "all-classes")
+      {
+        daocClass = $('input[name=select-hib-class-'+classType+']:checked').val();
+      }        
+    }
+    else if (realm == "midgard")
+    {
+      var classType = $('input[name=select-mid-class-type]:checked').val();
+      
+      if (classType !== "all-classes")
+      {
+        daocClass = $('input[name=select-mid-class-'+classType+']:checked').val();
+      }  
+    }
+    else if (realm == "albion")
+    {
+      var classType = $('input[name=select-alb-class-type]:checked').val();
+      
+      if (classType !== "all-classes")
+      {
+        daocClass = $('input[name=select-alb-class-'+classType+']:checked').val();
+      }  
+    }
+    
+    getTopPlayers(realm, duration, daocClass, function(responseJSON) {
       $("#top-players-table tbody tr").remove();
       
-      $.each(responseJSON.players, function() {
+      $.each(responseJSON.players, function(index) {
         $("#top-players-table tbody").append(
           "<tr>"+
+            "<td>"+(index+1)+"</td>"+
             "<td>"+this.name+"</td>"+
             "<td>"+this.rps+"</td>"+
             "<td>"+this.realm_level+"</td>"+
@@ -83,9 +114,10 @@ $( document ).on('turbolinks:load', function() {
     getTopGuilds(realm, duration, function(responseJSON) {
       $("#top-guilds-table tbody tr").remove();
       
-      $.each(responseJSON.guilds, function() {
+      $.each(responseJSON.guilds, function(index) {
         $("#top-guilds-table tbody").append(
           "<tr>"+
+            "<td>"+(index+1)+"</td>"+
             "<td>"+getGuildLinkHtml(this.name)+"</td>"+
             "<td>"+this.rps+"</td>"+
             "<td class='"+this.realm+"'>"+capitalize(this.realm)+"</td>"+
@@ -95,6 +127,44 @@ $( document ).on('turbolinks:load', function() {
       });
     });
     event.preventDefault();
+  });
+  
+  $('input[type=radio][name=select-realm]').bind('change', function() {
+    $(".top-players-class-type-filter").hide();
+    $(".top-players-class-filter").hide();
+    if (this.value == 'hibernia') {
+        $(".top-players-hib-class-type-filter").show();
+    }
+    else if (this.value == 'midgard') {
+        $(".top-players-mid-class-type-filter").show();
+    }
+    else if (this.value == 'albion') {
+        $(".top-players-alb-class-type-filter").show();
+    }
+  });
+  
+  $('input[type=radio][name=select-hib-class-type]').bind('change', function() {
+    $(".top-players-class-filter").hide();
+    
+    if(this.value !== "all-classes") {
+      $(".top-players-hib-class-"+this.value+"-filter").show();
+    }
+  });
+  
+  $('input[type=radio][name=select-mid-class-type]').bind('change', function() {
+    $(".top-players-class-filter").hide();
+    
+    if(this.value !== "all-classes") {
+      $(".top-players-mid-class-"+this.value+"-filter").show();
+    }
+  });
+  
+  $('input[type=radio][name=select-alb-class-type]').bind('change', function() {
+    $(".top-players-class-filter").hide();
+    
+    if(this.value !== "all-classes") {
+      $(".top-players-alb-class-"+this.value+"-filter").show();
+    }
   });
 });
 
@@ -109,10 +179,11 @@ function getGuildLinkHtml(guildName) {
   }
 }
 
-function getTopPlayers(realm, duration, callback)
+function getTopPlayers(realm, duration, daocClass, callback)
 {
   var params = "realm="+realm+
-                  "&duration="+duration;
+                  "&duration="+duration+
+                  "&daoc_class="+daocClass;
   var xmlhttp = createCORSRequest('GET', "/herald/player/top_rps?"+params);
 	if(!xmlhttp)
 	{
@@ -159,17 +230,11 @@ function getTopGuilds(realm, duration, callback)
 $(document).on('turbolinks:load', function() {
   
   if ( $( "#guild-members-table" ).length ){
-    if(!$("#guild-members-table_wrapper").length)
-    {
-      $('#guild-members-table').DataTable();
-    }
-    else
-    {
-      $('#guild-members-table').DataTable( {
-        "paging":   false,
-        "searching": false
-      });
-    }
+    $('#guild-members-table').DataTable( {
+      "paging":   false,
+      "searching": false,
+      "info": false
+    });
   }
 
   if ( $( "#rp-distribution-chart" ).length && $( "#rp-distribution-chart" ).children().length == 0) {

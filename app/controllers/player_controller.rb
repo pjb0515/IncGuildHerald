@@ -12,11 +12,12 @@ class PlayerController < ApplicationController
   def top_players
     @realm = params[:realm]
     @duration = params[:duration]
+    @daoc_class = params[:daoc_class]
     
     if @realm.blank? or @duration.blank?
       @players = Player.order("total_rps DESC").limit(25)
     else
-      @players = Player.get_top_players(@realm, @duration)
+      @players = Player.get_top_players(@realm, @duration, @daoc_class)
       
       respond_to :json
     end
