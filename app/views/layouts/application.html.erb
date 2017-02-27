@@ -30,7 +30,7 @@
                   <div class="inner-addon left-addon nav-search space-right">
                     <%= form_tag( search_players_path, method: :get) do %>
                         <i class="fa fa-search" aria-hidden="true"></i>
-                        <%= text_field_tag :name, nil, placeholder: 'Search Character...', class: 'form-control with-inlaid-submit' %>
+                        <%= text_field_tag :name, nil, placeholder: 'Characters...', class: 'form-control with-inlaid-submit' %>
                         <%= submit_tag "Search",  class: "btn btn-large btn-primary inlaid-submit" %>
                     <% end %>
                   </div>
@@ -39,7 +39,7 @@
                   <div class="inner-addon left-addon nav-search space-right">
                     <%= form_tag( search_guilds_path, method: :get) do %>
                         <i class="fa fa-search" aria-hidden="true"></i>
-                        <%= text_field_tag :name, nil, placeholder: 'Search Guild...', class: 'form-control with-inlaid-submit' %>
+                        <%= text_field_tag :name, nil, placeholder: 'Guilds...', class: 'form-control with-inlaid-submit' %>
                         <%= submit_tag "Search",  class: "btn btn-large btn-primary inlaid-submit" %>
                     <% end %>
                   </div>
