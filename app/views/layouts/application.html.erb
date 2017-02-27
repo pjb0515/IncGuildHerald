@@ -26,34 +26,23 @@
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Search Character <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            
-                          <%= form_tag( search_players_path, method: :get) do %>
-
-                            <%= label_tag "Character Name" %>
-                            <%= text_field_tag :name %>
-
-                            <%= submit_tag "Search", class: "btn btn-large btn-primary" %>
-                          <% end %>
-                        </li>
-                    </ul>
+                <li>
+                  <div class="inner-addon left-addon nav-search space-right">
+                    <%= form_tag( search_players_path, method: :get) do %>
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                        <%= text_field_tag :name, nil, placeholder: 'Search Character...', class: 'form-control with-inlaid-submit' %>
+                        <%= submit_tag "Search",  class: "btn btn-large btn-primary inlaid-submit" %>
+                    <% end %>
+                  </div>
                 </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Search Guild <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                          <%= form_tag( search_guilds_path, method: :get) do %>
-
-                            <%= label_tag "Guild Name" %>
-                            <%= text_field_tag :name %>
-
-                            <%= submit_tag "Search", class: "btn btn-large btn-primary" %>
-                          <% end %>
-                        </li>
-                    </ul>
+                <li>
+                  <div class="inner-addon left-addon nav-search space-right">
+                    <%= form_tag( search_guilds_path, method: :get) do %>
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                        <%= text_field_tag :name, nil, placeholder: 'Search Guild...', class: 'form-control with-inlaid-submit' %>
+                        <%= submit_tag "Search",  class: "btn btn-large btn-primary inlaid-submit" %>
+                    <% end %>
+                  </div>
                 </li>
             </ul>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->

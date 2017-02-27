@@ -7,3 +7,46 @@
 .albion {
   color: red;
 }
+
+.nav-search {
+    margin-top: 8px;
+    width: 250px;
+}
+
+.space-left { margin-left: 15px; }
+.space-right { margin-right: 15px; }
+
+/* positioning for inlaid fontawesome icons (such as search icon) */
+.inner-addon { position: relative; }
+
+/* style icon */
+.inner-addon .fa {
+    position: absolute;
+    padding: 10px;
+    pointer-events: none;
+}
+
+/* align icon */
+.left-addon .fa  { left:  0px;}
+.right-addon .fa { right: 0px;}
+
+/* add padding  */
+.left-addon input[type="text"]  { padding-left:  30px; }
+.right-addon input[type="text"] { padding-right: 30px; }
+
+.with-inlaid-submit { padding-right: 70px !important; }
+
+.inlaid-submit {
+    margin-left: -50px;
+    width: 65px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+@media screen and (max-width: 480px) {
+    .top-nav { padding-bottom: 15px; }
+    .top-nav>li { width: 100%; }
+    .nav-search { margin-right: 0; width: 100%; }
+    #page-wrapper { margin-top: 150px; } /* compensate for taller searches */
+}
