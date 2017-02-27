@@ -7,3 +7,29 @@
 .albion {
   color: red;
 }
+.navbar-fixed-top {
+  border-width: 0px;
+}
+.navbar-brand {
+  padding: 0px
+}
+.navbar-brand > img {
+  position:relative;
+  padding:3px 17px;
+  height: inherit;
+}
+.navbar {
+  background-color: #DDD;
+}
+.top-nav>li>a {
+  color: #000;
+}
+.side-nav {
+  background-color: #DDD;
+}
+.side-nav a {
+  color: #000;
+}
+.side-nav a>i {
+  color: #508;
+}
