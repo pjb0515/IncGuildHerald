@@ -89,7 +89,7 @@ $( document ).on('turbolinks:load', function() {
         $("#top-players-table tbody").append(
           "<tr>"+
             "<td>"+(index+1)+"</td>"+
-            "<td>"+this.name+"</td>"+
+            "<td><a href='/herald/player/find/"+this.name+"'>"+this.name+"</a></td>"+
             "<td>"+this.rps+"</td>"+
             "<td>"+this.realm_level+"</td>"+
             "<td class='"+this.realm+"'>"+capitalize(this.realm)+"</td>"+

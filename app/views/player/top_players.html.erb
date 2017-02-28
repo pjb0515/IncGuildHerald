@@ -401,7 +401,7 @@
           <% @players.each_with_index do |player, i| %>
             <tr>
               <td><%= i+1 %></td>
-              <td><%= player.name %></td>
+              <td><%= link_to player.name, player_details_path(player.name) %></td>
               <td><%= player.total_rps %></td>
               <td><%= player.realm_level %></td>
               <td class="<%= player.realm %>"><%= player.realm.capitalize %></td>
