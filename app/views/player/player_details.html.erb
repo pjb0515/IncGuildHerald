@@ -1,21 +1,16 @@
 <div class="row">
   <div class="col-xs-12">
-    <h1>Character Details - <span class="<%= @player.realm %>"><%= @player.name %></span></h1>
+    <h1>Character Details</h1>
   </div>
 </div>
 <div class="row">
   <div class="col-xs-12">
-    <span>Class: <%= @player.daoc_class %></span>
+    <h2><span class="<%= @player.realm %>"><%= @player.name %></span></h2>
   </div>
 </div>
 <div class="row">
   <div class="col-xs-12">
-    <span>Level: <%= @player.level %></span>
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    <span>Race: <%= @player.race %></span>
+    <h3><%= @player.level %> <%= @player.race.capitalize %> <%= @player.daoc_class.capitalize %></h3>
   </div>
 </div>
 <div class="row">
