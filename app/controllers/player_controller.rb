@@ -2,7 +2,12 @@ class PlayerController < ApplicationController
 
   def search_players
     @search_name = params[:name]
-    @players = Player.where("lower(name) like ?", "#{@search_name.downcase}%")
+    
+    if @search_name.blank?
+      @players = nil
+    else
+      @players = Player.where("lower(name) like ?", "#{@search_name.downcase}%")
+    end
   end
   
   def player_details

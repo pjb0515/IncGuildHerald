@@ -2,7 +2,12 @@ class GuildController < ApplicationController
 
   def search_guilds
     @search_name = params[:name]
-    @guilds = Guild.where("lower(name) like ?", "%#{@search_name.downcase}%")
+    
+    if @search_name.blank?
+      @guilds = nil
+    else
+      @guilds = Guild.where("lower(name) like ?", "%#{@search_name.downcase}%")
+    end
   end
   
   def guild_details
