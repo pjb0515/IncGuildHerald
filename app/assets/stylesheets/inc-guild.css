@@ -7,7 +7,11 @@
 .albion {
     color: red;
 }
-
+.side-nav .active {
+  outline: none;
+  background-color: #222 !important;
+  border-left: 4px solid #45007F;
+}
 .navbar-fixed-top {
     border-width: 0px;
 }
@@ -20,19 +24,19 @@
     height: inherit;
 }
 .navbar {
-    background-color: #DDD;
+    background-color: #45007F;
 }
 .top-nav>li>a {
     color: #000;
 }
 .side-nav {
-    background-color: #DDD;
+    background-color: #3A3A3A;
 }
 .side-nav a {
-    color: #000;
+    color: #FFF;
 }
 .side-nav a>i {
-    color: #508;
+    color: #FFF;
 }
 
 .navbar-toggle {
@@ -71,7 +75,7 @@
 .with-inlaid-submit { padding-right: 75px !important; }
 
 .inlaid-submit {
-    background: #508;
+    background: #3A3A3A;
     margin-left: -50px;
     width: 70px;
     position: absolute;
@@ -81,7 +85,7 @@
 }
 
 .inlaid-submit:hover, .inlaid-submit:focus, .inlaid-submit:active {
-    background: #75389c;
+    background: #555;
 }
 
 .form-control:focus {
