@@ -127,15 +127,28 @@ ul.alert-dropdown {
         padding-bottom: 40px;
     }
 
-    .side-nav>li>a {
+    .side-nav li {
         width: 225px;
+        border-left: 4px solid #222;
     }
 
-    .side-nav li a:hover,
-    .side-nav li a:focus {
+    .side-nav li.active {
         outline: none;
         background-color: #222 !important;
-        border-left: 4px solid #45007F;
+        border-left-color: #45007F;
+    }
+
+    .side-nav li:hover,
+    .side-nav li:focus {
+        outline: none;
+        background-color: #333 !important;
+        border-left-color: #45007F;
+    }
+    .side-nav li:hover a {
+        background-color: #333 !important;
+    }
+    .side-nav li.active:hover a {
+        background-color: #222 !important;
     }
 }
 
