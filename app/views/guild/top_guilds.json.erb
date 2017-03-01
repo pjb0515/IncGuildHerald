@@ -5,7 +5,7 @@
         {
           "name": "<%= guild.name %>",
           "realm": "<%= guild.realm %>",
-          "rps": "<%= guild.get_rps_from_duration(@duration) %>",
+          "rps": "<%= guild.format_realm_points(guild.get_rps_from_duration(@duration)) %>",
           "character_count": "<%= guild.players.count %>"
         }<% if guild != @guilds.last %>,<% end %>
       <% end %>

@@ -1,3 +1,5 @@
+include  ActionView::Helpers::NumberHelper
+
 class Guild < ActiveRecord::Base
   has_many :players
   has_many :guild_rp_snapshots
@@ -100,5 +102,9 @@ class Guild < ActiveRecord::Base
       guild_list =  Guild.where(realm: realm).order(duration+' DESC')
     end
     guild_list.map(&:id).index(id)+1
+  end
+
+  def format_realm_points(rps)
+    number_with_delimiter(rps, :delimiter => ',')
   end
 end

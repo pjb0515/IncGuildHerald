@@ -19,10 +19,10 @@
       </thead>
       <tbody>
         <tr>
-          <td><%= @guild.total_rps %></td>
-          <td><%= @guild.last_three_days_rps %></td>
-          <td><%= @guild.last_seven_days_rps %></td>
-          <td><%= @guild.last_fourteen_days_rps %></td>
+          <td><%= @guild.format_realm_points(@guild.total_rps) %></td>
+          <td><%= @guild.format_realm_points(@guild.last_three_days_rps) %></td>
+          <td><%= @guild.format_realm_points(@guild.last_seven_days_rps) %></td>
+          <td><%= @guild.format_realm_points(@guild.last_fourteen_days_rps) %></td>
           <td><%= @guild.players.count %></td>
           <td><%= @guild.get_rank("overall") %> (<%= @guild.get_rank("last_seven_days_rps") %>)</td>
           <td><%= @guild.get_rank_in_realm("overall") %> (<%= @guild.get_rank_in_realm("last_seven_days_rps") %>)</td>
@@ -56,11 +56,11 @@
           <% @guild.players.each do |player| %>
             <tr>
               <td><%= link_to player.name, player_details_path(player.name) %></td>
-              <td><%= player.total_rps %></td>
-              <td><%= player.last_three_days_rps %></td>
-              <td><%= player.last_seven_days_rps %></td>
-              <td><%= player.last_fourteen_days_rps %></td>
-              <td><%= player.realm_level %></td>
+              <td><%= player.format_realm_points(player.total_rps) %></td>
+              <td><%= player.format_realm_points(player.last_three_days_rps) %></td>
+              <td><%= player.format_realm_points(player.last_seven_days_rps) %></td>
+              <td><%= player.format_realm_points(player.last_fourteen_days_rps) %></td>
+              <td><%= player.format_rr() %></td>
               <td><%= player.daoc_class.capitalize %></td>
               <td><%= player.race.capitalize %></td>
             </tr>

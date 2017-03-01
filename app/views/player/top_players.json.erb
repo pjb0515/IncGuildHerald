@@ -7,7 +7,7 @@
           "realm": "<%= player.realm %>",
           "guild": "<%= player.get_guild_name %>",
           "rps": "<%= player.get_rps_from_duration(@duration) %>",
-          "realm_level": "<%= player.realm_level %>",
+          "realm_level": "<%= player.format_rr %>",
           "daoc_class": "<%= player.daoc_class.capitalize %>"
         }<% if player != @players.last %>,<% end %>
       <% end %>

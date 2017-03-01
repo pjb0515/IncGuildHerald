@@ -402,8 +402,8 @@
             <tr>
               <td><%= i+1 %></td>
               <td><%= link_to player.name, player_details_path(player.name) %></td>
-              <td><%= player.total_rps %></td>
-              <td><%= player.realm_level %></td>
+              <td><%= player.format_realm_points(player.total_rps) %></td>
+              <td><%= player.format_rr %></td>
               <td class="<%= player.realm %>"><%= player.realm.capitalize %></td>
               <td><%= player.daoc_class.capitalize %></td>
               <td><% if !player.guild.blank? %><%= link_to player.get_guild_name, guild_details_path(:name => player.get_guild_name) %><% end %></td>

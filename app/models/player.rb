@@ -1,3 +1,5 @@
+include  ActionView::Helpers::NumberHelper
+
 class Player < ActiveRecord::Base
   belongs_to :guild
   has_many :rp_snapshots
@@ -146,5 +148,14 @@ class Player < ActiveRecord::Base
       player_list =  Player.where(realm: realm, level: 45..50).order(duration+' DESC')
     end
     player_list.map(&:id).index(id)+1
+  end
+
+  def format_rr()
+    rr = realm_level.to_s.scan(/(\d{1,2})(\d)/);
+    return rr.join('L');
+  end
+
+  def format_realm_points(rps)
+    number_with_delimiter(rps, :delimiter => ',')
   end
 end
