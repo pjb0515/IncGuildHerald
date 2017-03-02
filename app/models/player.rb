@@ -56,19 +56,19 @@ class Player < ActiveRecord::Base
   end
   
   def self.hibernia_rps(duration)
-    Rails.cache.fetch("hibernia_rps/"+duration, expires_in: 20.minutes) do
+    Rails.cache.fetch("hibernia_rps/"+duration.to_s, expires_in: 20.minutes) do
       Player.where(:realm => 0).sum(duration)
     end
   end
   
   def self.midgard_rps(duration)
-    Rails.cache.fetch("midgard_rps/"+duration, expires_in: 20.minutes) do
+    Rails.cache.fetch("midgard_rps/"+duration.to_s, expires_in: 20.minutes) do
       Player.where(:realm => 1).sum(duration)
     end
   end
   
   def self.albion_rps(duration)
-    Rails.cache.fetch("albion_rps/"+duration, expires_in: 20.minutes) do
+    Rails.cache.fetch("albion_rps/"+duration.to_s, expires_in: 20.minutes) do
       Player.where(:realm => 3).sum(duration)
     end
   end
