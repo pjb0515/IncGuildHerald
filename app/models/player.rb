@@ -56,15 +56,33 @@ class Player < ActiveRecord::Base
   end
   
   def self.hibernia_rps(duration)
-    Player.where(:realm => 0).sum(duration)
+    Rails.cache.fetch("hibernia_rps/"+duration, expires_in: 20.minutes) do
+      Player.where(:realm => 0).sum(duration)
+    end
   end
   
   def self.midgard_rps(duration)
-    Player.where(:realm => 1).sum(duration)
+    Rails.cache.fetch("midgard_rps/"+duration, expires_in: 20.minutes) do
+      Player.where(:realm => 1).sum(duration)
+    end
   end
   
   def self.albion_rps(duration)
-    Player.where(:realm => 2).sum(duration)
+    Rails.cache.fetch("albion_rps/"+duration, expires_in: 20.minutes) do
+      Player.where(:realm => 3).sum(duration)
+    end
+  end
+  
+  def self.number_of_50s(realm)
+    Rails.cache.fetch("number_of_50s/"+realm, expires_in: 20.minutes) do
+      Player.where(realm: Player.realms[realm], level: 50).count
+    end
+  end
+  
+  def self.number_of_players_made(realm)
+    Rails.cache.fetch("number_of_50s/"+realm, expires_in: 20.minutes) do
+      Player.where(realm: Player.realms[realm]).count
+    end
   end
   
   def get_guild_name
@@ -120,7 +138,7 @@ class Player < ActiveRecord::Base
     end
   end
   
-    def get_rank(duration)
+  def get_rank(duration)
     #Ranking only calculated for characters 45 and above
     if level < 45
       return "N/A"

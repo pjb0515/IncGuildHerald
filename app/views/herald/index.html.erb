@@ -40,7 +40,7 @@
         </div>
     </div>
     
-    <%= tag :div, class: "realm-level-50s", data: {hibernia_total_50s: Player.where(realm: Player.realms['hibernia'], level: 50).count, midgard_total_50s: Player.where(realm: Player.realms['midgard'], level: 50).count, albion_total_50s: Player.where(realm: Player.realms['albion'], level: 50).count} %>
+    <%= tag :div, class: "realm-level-50s", data: {hibernia_total_50s: Player.number_of_50s('hibernia'), midgard_total_50s: Player.number_of_50s('midgard'), albion_total_50s: Player.number_of_50s('albion')} %>
     </div>
   </div>
   
@@ -54,7 +54,7 @@
         </div>
     </div>
     
-    <%= tag :div, class: "realm-player-count", data: {hibernia_count: Player.where(realm: Player.realms['hibernia']).count, midgard_count: Player.where(realm: Player.realms['midgard']).count, albion_count: Player.where(realm: Player.realms['albion']).count} %>
+    <%= tag :div, class: "realm-player-count", data: {hibernia_count: Player.number_of_players_made('hibernia'), midgard_count: Player.number_of_players_made('midgard'), albion_count: Player.number_of_players_made('albion')} %>
     </div>
   </div>
 </div>
