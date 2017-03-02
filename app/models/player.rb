@@ -69,7 +69,7 @@ class Player < ActiveRecord::Base
   
   def self.albion_rps(duration)
     Rails.cache.fetch("albion_rps/"+duration.to_s, expires_in: 20.minutes) do
-      Player.where(:realm => 3).sum(duration)
+      Player.where(:realm => 2).sum(duration)
     end
   end
   
