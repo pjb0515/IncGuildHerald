@@ -12,7 +12,7 @@ class Guild < ActiveRecord::Base
     elsif found_guild = Guild.find_by(:name => guild_name)
       return found_guild
     else
-      return create(:name => guild_name, :realm => realm)
+      return create(:name => guild_name, :realm => realm, :total_rps => 0, :last_three_days_rps => 0, :last_seven_days_rps => 0, :last_fourteen_days_rps => 0 )
     end
   end
   
