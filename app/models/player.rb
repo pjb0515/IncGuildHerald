@@ -80,7 +80,7 @@ class Player < ActiveRecord::Base
   end
   
   def self.number_of_players_made(realm)
-    Rails.cache.fetch("number_of_50s/"+realm, expires_in: 20.minutes) do
+    Rails.cache.fetch("number_of_players_made/"+realm, expires_in: 20.minutes) do
       Player.where(realm: Player.realms[realm]).count
     end
   end
