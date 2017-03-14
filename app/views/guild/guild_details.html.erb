@@ -42,6 +42,7 @@
       <thead>
         <tr>
           <th>Name</th>
+          <th>Level</th>
           <th>RPs</th>
           <th>RPs-3 Days</th>
           <th>RPs-7 Days</th>
@@ -56,6 +57,7 @@
           <% @guild.players.each do |player| %>
             <tr>
               <td><%= link_to player.name, player_details_path(player.name) %></td>
+              <td><%= player.level %></td>
               <td><%= player.format_realm_points(player.total_rps) %></td>
               <td><%= player.format_realm_points(player.last_three_days_rps) %></td>
               <td><%= player.format_realm_points(player.last_seven_days_rps) %></td>

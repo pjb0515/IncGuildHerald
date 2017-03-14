@@ -5,7 +5,7 @@
 </div>
 <div class="row">
   <div class="col-xs-12">
-    <h2><span class="<%= @player.realm %>"><%= @player.name %></span></h2>
+    <h2><span class="<%= @player.realm %>"><%= @player.name %></span> <% if !@player.guild.blank? %> - <%= link_to @player.guild.name, guild_details_path(@player.guild.name) %><% end %></h2>
   </div>
 </div>
 <div class="row">
