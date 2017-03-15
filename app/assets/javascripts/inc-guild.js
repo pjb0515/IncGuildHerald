@@ -174,6 +174,12 @@ $( document ).on('turbolinks:load', function() {
 
     ga('create', 'UA-92763506-1', 'auto');
     ga('send', 'pageview');
+    
+  $('#inc-highlights').on('ended', function () {
+    this.load();
+    this.play();
+  });
+
 });
 
 function getGuildLinkHtml(guildName) {
