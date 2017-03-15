@@ -4,9 +4,23 @@
   </video>
 </div>
 
-<% @inc_members.each do |player| %>
-  <div>
-    <%= player.name %>
+<% @inc_members.in_groups_of(2, false).each do |player_group| %>
+  <div class="row">
+    <% player_group.each do |player| %>
+      
+      <div class="col-md-6">
+        <div class="inc-member-container">
+          <div class="inc-member-name">
+            <%= player.name %>
+          </div>
+          <div class="inc-member-guild">
+            &lt;INC&gt;
+          </div>
+          <div class="inc-member-details">
+            <%= player.format_rr() %> <%= player.race.capitalize %> <%= player.daoc_class.capitalize %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
-
 <% end %>

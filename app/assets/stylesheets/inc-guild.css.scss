@@ -6,6 +6,14 @@
       font-url('glyphicons-halflings-regular.ttf') format('truetype'),
       font-url('glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
+@font-face {
+   font-family: 'Akashi';
+   src: font-url('Akashi.ttf');
+}
+@font-face {
+   font-family: 'Nevis';
+   src: font-url('nevis.ttf');
+}
 
 .fullscreen-bg {
     position: fixed;
@@ -27,6 +35,28 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
+}
+.inc-member-container {
+  border-radius: 15px 15px;
+  border: 3px solid white;
+  padding:20px;
+  background-color: #45007F;
+  color:white;
+  text-align:center;
+  margin: 50px 70px 0px;
+}
+.inc-member-name {
+  font-size:30px;
+  font-family: "Akashi";
+}
+.inc-member-guild {
+  font-size:20px;
+  font-family: "Nevis";
+}
+.inc-member-details {
+  font-size:14px;
+  font-family: "Nevis";
+    padding-top: 3px;
 }
 .hibernia {
     color: green;
