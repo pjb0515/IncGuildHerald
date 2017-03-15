@@ -2,6 +2,8 @@
   <video id="inc-highlights" muted autoplay class="fullscreen-bg__video">
     <source src="<%= video_path("inchighlights.mp4") %>" type="video/mp4">
   </video>
+  <div class="full-screen-overlay">
+  </div>
 </div>
 
 <% @inc_members.in_groups_of(2, false).each do |player_group| %>
