@@ -1,4 +1,9 @@
 module ApplicationHelper
+
+  def active_inc_index
+    "class=active" if controller_name == "inc" && action_name == "index"
+  end
+  
   def active_herald_index
     "class=active" if controller_name == "herald" && action_name == "index"
   end

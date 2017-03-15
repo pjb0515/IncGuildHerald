@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   
+  get '/' => 'inc#index', as: :index_inc
   get '/herald' => 'herald#index', as: :index_herald
   
   get '/herald/player' => 'player#index', as: :index_player
@@ -14,5 +15,4 @@ Rails.application.routes.draw do
   get '/herald/guild/find/:name' => 'guild#guild_details', as: :guild_details
   get '/herald/guild/top_rps' => 'guild#top_guilds', as: :top_guilds
   
-  root 'herald#index'
 end
