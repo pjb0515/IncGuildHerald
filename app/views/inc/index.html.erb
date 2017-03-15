@@ -3,3 +3,10 @@
     <source src="<%= video_path("inchighlights.mp4") %>" type="video/mp4">
   </video>
 </div>
+
+<% for @inc_members.each do |player| %>
+  <div>
+    <%= player.name %>
+  </div>
+
+<% end %>
