@@ -153,7 +153,7 @@ class Player < ActiveRecord::Base
     
     if !duration.eql? "overall"
       player_list = Rails.cache.fetch("get_rank_player_list/allrealms/"+duration, expires_in: 20.minutes) do
-        player_list.sort_by { |f| -f[:duration] }
+        player_list.sort_by { |f| -f[duration] }
       end
     end
     player_list.map(&:id).index(id)+1
@@ -178,7 +178,7 @@ class Player < ActiveRecord::Base
       end
     else
       player_list = Rails.cache.fetch("get_rank_player_list/"+realm+"/"+duration, expires_in: 20.minutes) do
-        new_player_list.sort_by { |f| -f[:duration] }
+        new_player_list.sort_by { |f| -f[duration] }
       end
     end
     player_list.map(&:id).index(id)+1
