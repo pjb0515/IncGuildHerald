@@ -146,9 +146,9 @@ class Player < ActiveRecord::Base
     
     player_list = nil
     if duration.eql? "overall"
-      player_list = Player.where(level: 45..50).order('total_rps DESC')
+      player_list = Player.select(:id, :total_rps).where(level: 45..50).order('total_rps DESC')
     else
-      player_list = Player.where(level: 45..50).order(duration+' DESC')
+      player_list = Player.select(:id, duration).where(level: 45..50).order(duration+' DESC')
     end
     player_list.map(&:id).index(id)+1
   end
@@ -161,9 +161,9 @@ class Player < ActiveRecord::Base
     
     player_list = nil
     if duration.eql? "overall"
-      player_list = Player.where(realm: realm, level: 45..50).order('total_rps DESC')
+      player_list = Player.select(:id, :total_rps).where(realm: realm, level: 45..50).order('total_rps DESC')
     else
-      player_list =  Player.where(realm: realm, level: 45..50).order(duration+' DESC')
+      player_list =  Player.select(:id, duration).where(realm: realm, level: 45..50).order(duration+' DESC')
     end
     player_list.map(&:id).index(id)+1
   end
