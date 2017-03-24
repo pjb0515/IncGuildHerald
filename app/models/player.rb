@@ -150,7 +150,6 @@ class Player < ActiveRecord::Base
       Player.select(:id, :total_rps, :last_three_days_rps, :last_seven_days_rps, last_fourteen_days_rps, :level, :realm).where(level: 45..50).order('total_rps DESC')
     end
     
-    
     if !duration.eql? "overall"
       player_list = Rails.cache.fetch("get_rank_player_list/allrealms/"+duration, expires_in: 20.minutes) do
         player_list.sort_by { |f| -f[duration] }
@@ -170,15 +169,15 @@ class Player < ActiveRecord::Base
     player_list = Rails.cache.fetch("get_rank_player_list/allrealms/overall", expires_in: 20.minutes) do
       Player.select(:id, :total_rps, :last_three_days_rps, :last_seven_days_rps, last_fourteen_days_rps, :level, :realm).where(level: 45..50).order('total_rps DESC')
     end
-    realm_player_list = player_list.select {|x| x.realm.eql? realm }
+    player_list = player_list.select {|x| x.realm.eql? realm }
     
     if duration.eql? "overall"
       player_list = Rails.cache.fetch("get_rank_player_list/"+realm+"/overall", expires_in: 20.minutes) do
-        realm_player_list.sort_by { |f| -f[:total_rps] }
+        player_list.sort_by { |f| -f[:total_rps] }
       end
     else
       player_list = Rails.cache.fetch("get_rank_player_list/"+realm+"/"+duration, expires_in: 20.minutes) do
-        realm_player_list.sort_by { |f| -f[duration] }
+        player_list.sort_by { |f| -f[duration] }
       end
     end
     player_list.map(&:id).index(id)+1
