@@ -146,13 +146,13 @@ class Player < ActiveRecord::Base
     
     player_list = nil
     
-    player_list = Rails.cache.fetch("get_rank_player_list/allrealms/overall", expires_in: 20.minutes) do
-      Player.select(:id, :total_rps, :last_three_days_rps, :last_seven_days_rps, last_fourteen_days_rps, :level, :realm).where(level: 45..50).order('total_rps DESC')
-    end
-    
-    if !duration.eql? "overall"
+    if duration.eql? "overall"
+      player_list = Rails.cache.fetch("get_rank_player_list/allrealms/overall", expires_in: 20.minutes) do
+        Player.select(:id, :total_rps, :last_three_days_rps, :last_seven_days_rps, last_fourteen_days_rps, :level, :realm).where(level: 45..50).order('total_rps DESC')
+      end
+    else
       player_list = Rails.cache.fetch("get_rank_player_list/allrealms/"+duration, expires_in: 20.minutes) do
-        player_list.sort_by { |f| -f[duration] }
+        Player.select(:id, :total_rps, :last_three_days_rps, :last_seven_days_rps, last_fourteen_days_rps, :level, :realm).where(level: 45..50).order(duration+' DESC')
       end
     end
     player_list.map(&:id).index(id)+1
@@ -173,11 +173,21 @@ class Player < ActiveRecord::Base
     
     if duration.eql? "overall"
       player_list = Rails.cache.fetch("get_rank_player_list/"+realm+"/overall", expires_in: 20.minutes) do
-        player_list.sort_by { |f| -f[:total_rps] }
+      
+        temp_player_list = Rails.cache.fetch("get_rank_player_list/allrealms/overall", expires_in: 20.minutes) do
+          Player.select(:id, :total_rps, :last_three_days_rps, :last_seven_days_rps, last_fourteen_days_rps, :level, :realm).where(level: 45..50).order('total_rps DESC')
+        end
+        
+        player_list = temp_player_list.select {|x| x.realm.eql? realm }
       end
     else
       player_list = Rails.cache.fetch("get_rank_player_list/"+realm+"/"+duration, expires_in: 20.minutes) do
-        player_list.sort_by { |f| -f[duration] }
+      
+        temp_player_list = Rails.cache.fetch("get_rank_player_list/allrealms/"+duration, expires_in: 20.minutes) do
+          Player.select(:id, :total_rps, :last_three_days_rps, :last_seven_days_rps, last_fourteen_days_rps, :level, :realm).where(level: 45..50).order(duration+' DESC')
+        end
+        
+        player_list = temp_player_list.select {|x| x.realm.eql? realm }
       end
     end
     player_list.map(&:id).index(id)+1
