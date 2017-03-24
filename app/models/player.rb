@@ -145,10 +145,16 @@ class Player < ActiveRecord::Base
     end
     
     player_list = nil
-    if duration.eql? "overall"
-      player_list = Player.select(:id, :total_rps, :level).where(level: 45..50).order('total_rps DESC')
-    else
-      player_list = Player.select(:id, duration, :level).where(level: 45..50).order(duration+' DESC')
+    
+    player_list = Rails.cache.fetch("get_rank_player_list/allrealms/overall", expires_in: 20.minutes) do
+      Player.select(:id, :total_rps, :last_three_days_rps, :last_seven_days_rps, last_fourteen_days_rps, :level, :realm).where(level: 45..50).order('total_rps DESC')
+    end
+    
+    
+    if !duration.eql? "overall"
+      player_list = Rails.cache.fetch("get_rank_player_list/allrealms/"+duration, expires_in: 20.minutes) do
+        player_list.sort_by { |f| -f[:duration] }
+      end
     end
     player_list.map(&:id).index(id)+1
   end
@@ -160,14 +166,24 @@ class Player < ActiveRecord::Base
     end
     
     player_list = nil
+    
+    player_list = Rails.cache.fetch("get_rank_player_list/allrealms/overall", expires_in: 20.minutes) do
+      Player.select(:id, :total_rps, :last_three_days_rps, :last_seven_days_rps, last_fourteen_days_rps, :level, :realm).where(level: 45..50).order('total_rps DESC')
+    end
+    realm_player_list = array.select {|x| x.realm.eql? realm }
+    
     if duration.eql? "overall"
-      player_list = Player.select(:id, :total_rps, :level).where(realm: realm, level: 45..50).order('total_rps DESC')
+      player_list = Rails.cache.fetch("get_rank_player_list/"+realm+"/overall", expires_in: 20.minutes) do
+        new_player_list.sort_by { |f| -f[:total_rps] }
+      end
     else
-      player_list =  Player.select(:id, duration, :level).where(realm: realm, level: 45..50).order(duration+' DESC')
+      player_list = Rails.cache.fetch("get_rank_player_list/"+realm+"/"+duration, expires_in: 20.minutes) do
+        new_player_list.sort_by { |f| -f[:duration] }
+      end
     end
     player_list.map(&:id).index(id)+1
   end
-
+   
   def format_rr()
     rr = realm_level.to_s.scan(/(\d{1,2})(\d)/);
     return rr.join('L');
